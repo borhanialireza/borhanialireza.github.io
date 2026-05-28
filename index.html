@@ -1019,6 +1019,55 @@
       margin-top: 0.18rem;
     }
 
+    /* Research interests tiles */
+
+    .research-grid {
+      list-style: none;
+      margin: 0.15rem 0 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      align-items: stretch;
+    }
+
+    .research-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0.95rem 0.95rem;
+      min-height: 164px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      background: var(--bg-elevated);
+      box-shadow: 0 1px 10px rgba(15, 23, 42, 0.04);
+      text-align: center;
+    }
+
+    :root[data-theme="dark"] .research-item {
+      background: color-mix(in srgb, var(--bg-elevated) 98%, rgba(255, 255, 255, 0.02));
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .research-item-title {
+      margin: 0 0 0.42rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.34;
+      letter-spacing: 0.005em;
+      color: var(--text-main);
+      max-width: 30ch;
+    }
+
+    .research-item-text {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.58;
+      color: var(--text-muted);
+      max-width: 38ch;
+    }
+
     /* Pills list */
 
     .pill-list {
@@ -1156,7 +1205,7 @@
     }
 
     .pub-list {
-      margin: 0;
+      margin: 0.1rem 0 0;
       padding: 0;
       list-style: none;
       counter-reset: pub-counter;
@@ -1167,7 +1216,16 @@
       margin-bottom: 0;
       padding: 1rem 0 1rem 2.25rem;
       position: relative;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 80%, transparent);
+    }
+
+    .pub-item:first-child {
+      padding-top: 0.2rem;
+    }
+
+    #publications .section-title {
+      margin-bottom: 0.65rem;
+      padding-bottom: 0.35rem;
     }
 
     .pub-item:last-child {
@@ -1182,7 +1240,7 @@
       top: 1rem;
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--text-muted);
       font-variant-numeric: tabular-nums;
     }
 
@@ -1250,10 +1308,35 @@
       opacity: 0.6;
       cursor: default;
     }
+    .pub-pill.arxiv,
     .pub-pill.paper,
     .pub-pill.slides,
     .pub-pill.recording {
       font-weight: 500;
+    }
+
+    .pub-pill.arxiv {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+
+    .pub-pill.paper {
+      background: #f5f8ff;
+      border-color: #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .pub-pill.slides {
+      background: #f7f7ff;
+      border-color: #ddd6fe;
+      color: #5b21b6;
+    }
+
+    .pub-pill.recording {
+      background: #f7faf8;
+      border-color: #bbf7d0;
+      color: #166534;
     }
 
     .pub-pill.status {
@@ -1273,54 +1356,285 @@
       color: var(--text-muted);
     }
 
+    :root[data-theme="dark"] .pub-pill.arxiv {
+      background: #1a2433;
+      border-color: #334155;
+      color: #cbd5e1;
+    }
+
+    :root[data-theme="dark"] .pub-pill.paper {
+      background: #172554;
+      border-color: #1d4ed8;
+      color: #bfdbfe;
+    }
+
+    :root[data-theme="dark"] .pub-pill.slides {
+      background: #2e1065;
+      border-color: #6d28d9;
+      color: #ddd6fe;
+    }
+
+    :root[data-theme="dark"] .pub-pill.recording {
+      background: #052e1a;
+      border-color: #15803d;
+      color: #bbf7d0;
+    }
+
 
     /* =============== Projects =============== */
 
-    .grid-2 {
+    #projects .section-title {
+      margin-bottom: 0.85rem;
+    }
+
+    #projects .project-showcase {
+      list-style: none;
+      margin: 0;
+      padding: 0;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    #projects .project-card {
+      padding: 1rem 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 85%, transparent);
+    }
+
+    #projects .project-card:first-child {
+      padding-top: 0.1rem;
+    }
+
+    #projects .project-showcase-main > .project-card:last-child,
+    #projects .project-showcase-additional > .project-card:last-child {
+      padding-bottom: 0;
+    }
+
+    #projects .project-showcase-additional > .project-card:last-child {
+      border-bottom: none;
+    }
+
+    #projects .project-card-inner {
+      display: grid;
+      grid-template-columns: 188px minmax(0, 1fr);
       gap: 1.1rem;
+      align-items: stretch;
+      min-height: 156px;
     }
 
-    .card .card-project {
-      background: color-mix(in srgb, var(--bg-subtle) 90%, var(--accent-soft));
+    #projects .project-visual {
+      margin: 0;
+      height: 148px;
+      width: 100%;
       border: 1px solid var(--border-subtle);
-      box-shadow: none;
-      padding: 1.1rem 1.15rem;
-      border-radius: var(--radius-md);
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
     }
 
-    .card-project {
+    :root[data-theme="dark"] #projects .project-visual {
+      background: var(--bg-elevated);
+    }
+
+    #projects .project-visual-open {
+      appearance: none;
+      border: none;
+      margin: 0;
+      padding: 0.45rem;
+      width: 100%;
+      height: 100%;
+      cursor: zoom-in;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #projects .project-visual-open:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+
+    #projects .project-visual img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .project-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(4px);
+    }
+
+    .project-lightbox[hidden] {
+      display: none;
+    }
+
+    .project-lightbox-panel {
+      position: relative;
+      max-width: min(960px, 96vw);
+      max-height: min(88vh, 900px);
+      padding: 0.75rem;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.28);
+    }
+
+    :root[data-theme="dark"] .project-lightbox-panel {
+      background: var(--bg-elevated);
+    }
+
+    .project-lightbox-panel img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(88vh - 3rem);
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    .project-lightbox-close {
+      position: absolute;
+      top: 0.45rem;
+      right: 0.45rem;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    #projects .project-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #projects .project-title {
+      margin: 0 0 0.35rem;
+      font-size: 0.93rem;
+      font-weight: 600;
+      line-height: 1.42;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+
+    #projects a.project-title {
+      display: inline-block;
+      color: var(--text-main);
+      text-decoration: underline;
+      text-decoration-color: rgba(82, 96, 121, 0.35);
+      text-underline-offset: 0.14em;
+      transform-origin: left center;
+      transition: transform 0.2s ease, color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+
+    #projects a.project-title:hover,
+    #projects a.project-title:focus-visible {
+      transform: scale(1.05);
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    #projects .project-summary {
+      margin: 0 0 0.5rem;
+      font-size: 0.85rem;
+      line-height: 1.56;
+      color: var(--text-muted);
+    }
+
+    #projects .project-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #projects .project-metrics li {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--text-muted);
+      padding: 0.14rem 0.48rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-subtle);
+    }
+
+    #projects .projects-additional {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid color-mix(in srgb, var(--border-subtle) 85%, transparent);
+    }
+
+    #projects .projects-additional-heading {
+      margin: 0 0 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    #projects .project-showcase-additional .project-card {
+      padding: 0.7rem 0;
+    }
+
+    #projects .project-showcase-additional .project-card-inner {
+      display: block;
       min-height: 0;
     }
 
-    .card-project .card-title {
-      font-size: 0.95rem;
-      line-height: 1.4;
+    #projects .project-showcase-additional .project-title {
+      font-size: 0.88rem;
+      margin-bottom: 0.28rem;
     }
 
-    .card-tags-inline {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.5rem;
+    #projects .project-showcase-additional .project-summary {
+      font-size: 0.82rem;
+      line-height: 1.52;
+      margin-bottom: 0.42rem;
     }
 
-    .card-tags-inline .tag,
-    .tag {
-      font-size: 0.72rem;
-      padding: 0.18rem 0.55rem;
-      border-radius: 999px;
-      background: var(--bg-elevated);
-      color: var(--text-muted);
-      border: 1px solid var(--border-subtle);
-      font-weight: 500;
+    #projects .project-showcase-additional .project-metrics li {
+      font-size: 0.68rem;
+      padding: 0.12rem 0.42rem;
     }
 
-    :root[data-theme="dark"] .card-tags-inline .tag,
-    :root[data-theme="dark"] .tag {
-      color: var(--text-muted);
-      border-color: var(--border-subtle);
+    @media (max-width: 640px) {
+      #projects .project-card-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      #projects .project-card-inner {
+        min-height: 0;
+      }
+
+      #projects .project-visual {
+        max-width: 220px;
+        margin: 0 auto;
+        width: 100%;
+        height: 148px;
+      }
     }
 
     .card-links {
@@ -1738,10 +2052,6 @@
         display: none;
       }
 
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
       .pub-pill {
         min-height: 40px;
         padding: 0.35rem 0.65rem;
@@ -1765,6 +2075,10 @@
 
       .card {
         padding: 1rem 0.95rem;
+      }
+
+      .research-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .pub-item {
@@ -1994,12 +2308,23 @@
         <section class="section" id="research">
           <div class="card">
             <h2 class="section-title">Research Interests</h2>
-            <ul class="nice-list">
-              <li>Resilient and dependable IoT systems for smart homes and smart environments</li>
-              <li>Lightweight Transformer architectures and ML models for real-time edge deployment</li>
-              <li>Hardware/software co-design for efficient ML and sensing workloads</li>
-              <li>High-performance computing systems and parallel programming frameworks</li>
-              <li>FPGA-based acceleration and reconfigurable computing</li>
+            <ul class="research-grid">
+              <li class="research-item">
+                <h3 class="research-item-title">Machine Learning for IoT Reliability</h3>
+                <p class="research-item-text">Self-supervised and context-aware ML methods for fault detection in smart-home systems</p>
+              </li>
+              <li class="research-item">
+                <h3 class="research-item-title">Transformer Models for Multivariate Time-Series Data</h3>
+                <p class="research-item-text">Lightweight Transformer architectures for modeling spatiotemporal correlations and abnormal behavior in heterogeneous IoT streams</p>
+              </li>
+              <li class="research-item">
+                <h3 class="research-item-title">Edge AI Systems</h3>
+                <p class="research-item-text">Real-time ML inference and low-overhead deployment on resource-constrained IoT gateways and embedded devices</p>
+              </li>
+              <li class="research-item">
+                <h3 class="research-item-title">Efficient ML Computing</h3>
+                <p class="research-item-text">HW/SW co-design, parallel computing, and FPGA-based acceleration for ML workloads</p>
+              </li>
             </ul>
           </div>
         </section>
@@ -2018,10 +2343,10 @@
                   A. Borhani, V. Andalibi, B. Asgari
                 </div>
                 <div class="pub-venue">
-                  Submitted to the 53rd International Symposium on Computer Architecture (ISCA), 2026.
+                  Submitted to the ACM/IEEE International Conference on Embedded Artificial Intelligence and Sensing Systems (SenSys), 2027.
                 </div>
                 <div class="pub-links">
-                  <a class="pub-pill paper"
+                  <a class="pub-pill arxiv"
                      href="https://arxiv.org/abs/2603.10038"
                      target="_blank" rel="noopener">
                     arXiv
@@ -2091,78 +2416,95 @@
           <div class="card">
             <h2 class="section-title">Selected Projects</h2>
 
-            <div class="grid-2">
-              <div class="card card-project">
-                <div class="card-title">Tureis: Unified Resilience for Smart-Home IoT Devices</div>
-                <div class="card-meta">Transformer-based fault detection &amp; diagnosis · Smart homes · Edge deployment</div>
-                <ul class="nice-list">
-                  <li>Lightweight BERT-style Transformer for real-time sensor failure detection and diagnosis in smart homes.</li>
-                  <li>Bit-level sensor encodings and confidence-based fault scoring designed for edge devices.</li>
-                  <li>Targets robust, low-latency inference on resource-constrained platforms.</li>
-                </ul>
-                <div class="card-tags-inline">
-                  <span class="tag">Transformers</span>
-                  <span class="tag">Edge ML</span>
-                  <span class="tag">IoT</span>
-                  <span class="tag">Fault Detection</span>
+            <ol class="project-showcase project-showcase-main">
+              <li class="project-card">
+                <div class="project-card-inner">
+                  <figure class="project-visual project-visual-tureis">
+                    <button type="button" class="project-visual-open" data-full-src="tureis.png" aria-label="Expand Tureis diagram">
+                      <img src="tureis.png" alt="Tureis Transformer architecture for IoT resilience" loading="lazy" decoding="async" />
+                    </button>
+                  </figure>
+                  <div class="project-copy">
+                    <a class="project-title" href="https://arxiv.org/abs/2603.10038" target="_blank" rel="noopener">Tureis: Self-Supervised Resilience for Smart-Home IoT Devices</a>
+                    <p class="project-summary">Lightweight Transformer-based framework for localizing simultaneous sensor failures in heterogeneous smart-home IoT deployments.</p>
+                    <ul class="project-metrics" aria-label="Key areas">
+                      <li>ML for IoT Reliability</li>
+                      <li>Transformer Time-Series Modeling</li>
+                      <li>Edge AI Systems</li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              </li>
 
-              <div class="card card-project">
-                <div class="card-title">ThingsDND: IoT Device Failure Detection &amp; Diagnosis</div>
-                <div class="card-meta">Smart-home sensing · Dependability · Anomaly detection</div>
-                <ul class="nice-list">
-                  <li>Context-aware method for detecting and diagnosing sensor failures in multi-user smart homes.</li>
-                  <li>Models correlations between heterogeneous sensors to localize the source and type of faults.</li>
-                </ul>
-                <div class="card-tags-inline">
-                  <span class="tag">Dependability</span>
-                  <span class="tag">Smart Homes</span>
-                  <span class="tag">IoT</span>
+              <li class="project-card">
+                <div class="project-card-inner">
+                  <figure class="project-visual project-visual-thingsdnd">
+                    <button type="button" class="project-visual-open" data-full-src="thingsdnd.png" aria-label="Expand ThingsDND diagram">
+                      <img src="thingsdnd.png" alt="ThingsDND spatiotemporal sensor modeling overview" loading="lazy" decoding="async" />
+                    </button>
+                  </figure>
+                  <div class="project-copy">
+                    <a class="project-title" href="https://ieeexplore.ieee.org/abstract/document/9933324" target="_blank" rel="noopener">ThingsDND: Context-Aware Failure Detection and Diagnosis</a>
+                    <p class="project-summary">Automatic context-aware framework for detecting and diagnosing sensor failures in multi-user smart homes.</p>
+                    <ul class="project-metrics" aria-label="Key areas">
+                      <li>ML for IoT Reliability</li>
+                      <li>BiLSTM Time-Series Modeling</li>
+                      <li>Smart-Home Sensing</li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              </li>
 
-              <div class="card card-project">
-                <div class="card-title">Comparative Study of Parallel Programming Frameworks</div>
-                <div class="card-meta">HPC architectures · Intel MPI · OpenMPI · Intel TBB · PSTL</div>
-                <ul class="nice-list">
-                  <li>Evaluated Intel MPI, OpenMPI, Intel TBB, and PSTL on HPC platforms.</li>
-                  <li>Analyzed scalability, communication efficiency, and performance bottlenecks.</li>
-                </ul>
-                <div class="card-tags-inline">
-                  <span class="tag">HPC</span>
-                  <span class="tag">MPI</span>
-                  <span class="tag">TBB</span>
-                  <span class="tag">Parallel Programming</span>
+              <li class="project-card">
+                <div class="project-card-inner">
+                  <figure class="project-visual project-visual-fast">
+                    <button type="button" class="project-visual-open" data-full-src="fast.png" aria-label="Expand FAST diagram">
+                      <img src="fast.png" alt="FAST FPGA neural network training accelerator diagram" loading="lazy" decoding="async" />
+                    </button>
+                  </figure>
+                  <div class="project-copy">
+                    <a class="project-title" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9960109" target="_blank" rel="noopener">FAST: FPGA Acceleration of Neural Network Training</a>
+                    <p class="project-summary">Low-precision FPGA framework for accelerating neural-network training on resource-constrained embedded platforms.</p>
+                    <ul class="project-metrics" aria-label="Key areas">
+                      <li>Efficient ML Computing</li>
+                      <li>Fixed-Point FPGA Acceleration</li>
+                      <li>HW/SW Co-Design</li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              </li>
+            </ol>
 
-              <div class="card card-project">
-                <div class="card-title">Hardware/Software Co-design of an Arithmetic Core</div>
-                <div class="card-meta">Reconfigurable systems · Xilinx Vivado · Arithmetic design</div>
-                <ul class="nice-list">
-                  <li>Designed and implemented an arithmetic core using Xilinx Vivado Design Suite.</li>
-                  <li>Explored resource–performance trade-offs and performance optimization for FPGA-based realizations.</li>
-                </ul>
-                <div class="card-tags-inline">
-                  <span class="tag">FPGA</span>
-                  <span class="tag">Vivado</span>
-                  <span class="tag">Hardware/Software Co-design</span>
-                </div>
-              </div>
-
-              <div class="card card-project">
-                <div class="card-title">Error-Detection Techniques in Python</div>
-                <div class="card-meta">CRC · Checksum · Hamming code</div>
-                <ul class="nice-list">
-                  <li>Implemented CRC, checksum, and Hamming code algorithms in Python.</li>
-                  <li>Compared detection capability and overhead across different error models.</li>
-                </ul>
-                <div class="card-tags-inline">
-                  <span class="tag">Python</span>
-                  <span class="tag">Error Detection</span>
-                </div>
-              </div>
+            <div class="projects-additional">
+              <h3 class="projects-additional-heading">Additional Projects</h3>
+              <ol class="project-showcase project-showcase-additional">
+                <li class="project-card">
+                  <div class="project-card-inner">
+                    <div class="project-copy">
+                      <h3 class="project-title">Comparative Study of Parallel Programming Frameworks</h3>
+                      <p class="project-summary">Evaluated MPI, TBB, and parallel programming frameworks across HPC workloads, focusing on scalability, communication overhead, and performance bottlenecks.</p>
+                      <ul class="project-metrics" aria-label="Key areas">
+                        <li>High-Performance Computing</li>
+                        <li>Parallel Programming</li>
+                        <li>Performance Analysis</li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="project-card">
+                  <div class="project-card-inner">
+                    <div class="project-copy">
+                      <h3 class="project-title">Hardware/Software Co-Design of an Arithmetic Core</h3>
+                      <p class="project-summary">Designed and implemented an FPGA-based arithmetic core, exploring resource–performance trade-offs using Xilinx Vivado.</p>
+                      <ul class="project-metrics" aria-label="Key areas">
+                        <li>Reconfigurable Computing</li>
+                        <li>FPGA Design</li>
+                        <li>Vivado</li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ol>
             </div>
           </div>
         </section>
@@ -2235,6 +2577,10 @@
             <h3 class="card-title">News</h3>
             <ul class="news-list">
               <li class="news-item">
+                <time class="news-date" datetime="2026-05">May 2026</time>
+                <p class="news-text">Tureis submitted to SenSys 2027.</p>
+              </li>
+              <li class="news-item">
                 <time class="news-date" datetime="2026-04">Apr 2026</time>
                 <p class="news-text">Tureis submitted to ASPLOS 2027.</p>
               </li>
@@ -2263,7 +2609,7 @@
                 <p class="institution">University of Maryland, College Park, MD, USA</p>
               </li>
               <li class="education-item">
-                <p class="degree">M.Sc. in Computer Engineering (Computer Architecture)</p>
+                <p class="degree">M.Sc. in Computer Engineering</p>
                 <p class="institution">Amirkabir University of Technology (Tehran Polytechnic), Tehran, Iran</p>
               </li>
             </ul>
@@ -2290,6 +2636,13 @@
           </div>
         </section>
       </aside>
+    </div>
+  </div>
+
+  <div id="project-lightbox" class="project-lightbox" role="dialog" aria-modal="true" aria-label="Expanded project figure" hidden>
+    <div class="project-lightbox-panel">
+      <button type="button" class="project-lightbox-close" id="project-lightbox-close" aria-label="Close expanded figure">✕</button>
+      <img id="project-lightbox-img" src="" alt="" />
     </div>
   </div>
 
@@ -2919,6 +3272,44 @@
       const shortcutHint = isMac ? "⌘K" : "Ctrl+K";
       headerInput.placeholder = `Search… (${shortcutHint})`;
       dialogInput.placeholder = "Search pages, projects, publications…";
+    })();
+
+    // Project figure lightbox
+    (function () {
+      const lightbox = document.getElementById("project-lightbox");
+      const lightboxImg = document.getElementById("project-lightbox-img");
+      const lightboxClose = document.getElementById("project-lightbox-close");
+      if (!lightbox || !lightboxImg || !lightboxClose) return;
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || "";
+        lightbox.hidden = false;
+        document.body.style.overflow = "hidden";
+        lightboxClose.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.hidden = true;
+        lightboxImg.src = "";
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".project-visual-open").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const src = btn.getAttribute("data-full-src");
+          const img = btn.querySelector("img");
+          if (src) openLightbox(src, img ? img.alt : "");
+        });
+      });
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+      });
     })();
   </script>
 </body>
