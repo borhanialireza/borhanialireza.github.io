@@ -2,20 +2,2924 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alireza Borhani</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Alireza Borhani | Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Academic homepage of Alireza Borhani, Ph.D. student in Computer Science at the University of Maryland." />
+  <meta name="author" content="Alireza Borhani" />
+  <meta name="color-scheme" content="light dark" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============== Base =============== */
+
+    :root {
+      --bg: #f5f7fb;
+      --bg-elevated: #ffffff;
+      --bg-subtle: #f7f9fc;
+      --border-subtle: #d7dfea;
+      --text-main: #152033;
+      --text-muted: #526079;
+      --accent: #1d4ed8;
+      --accent-soft: #e8f0ff;
+      --accent-dark: #1e40af;
+      --shadow-soft: 0 1px 0 rgba(15, 23, 42, 0.03);
+      --radius-lg: 10px;
+      --radius-md: 8px;
+
+      --font-body: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+      --section-gap: 2rem;
+      --content-max-width: min(1220px, calc(100vw - 4rem));
+      --line-height: 1.62;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0d1117;
+      --bg-elevated: #121923;
+      --bg-subtle: #19212c;
+      --border-subtle: #2a3747;
+      --text-main: #e9edf2;
+      --text-muted: #a2adba;
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.16);
+      --accent-dark: #bfdbfe;
+      --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      background:
+        radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--accent-soft) 55%, transparent) 0, transparent 42%),
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, #dbeafe 45%, transparent) 0, transparent 36%),
+        var(--bg);
+      color: var(--text-main);
+      line-height: var(--line-height);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: clip;
+    }
+
+    body.nav-menu-open {
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    :root[data-theme="dark"] body {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(96, 165, 250, 0.1) 0, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.06) 0, transparent 35%),
+        var(--bg);
+    }
+
+    .lead a,
+    .nice-list a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.15em;
+    }
+
+    .lead a:hover,
+    .nice-list a:hover {
+      color: var(--accent-dark);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0.75rem;
+      z-index: 2000;
+      padding: 0.5rem 1rem;
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .skip-link:focus {
+      left: 0.75rem;
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =============== Header / Navbar =============== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 96%, #ffffff 4%);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-left: env(safe-area-inset-left, 0);
+      padding-right: env(safe-area-inset-right, 0);
+    }
+
+    .nav-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(15, 23, 42, 0.45);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-backdrop.visible {
+      display: block;
+    }
+
+    :root[data-theme="dark"] .nav-backdrop {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .navbar {
+      width: var(--content-max-width);
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+      padding: 0.72rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.1rem;
+      position: relative;
+    }
+
+    .nav-left {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 clamp(230px, 24vw, 250px);
+      width: clamp(230px, 24vw, 250px);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0.24rem 0.78rem;
+      border: 1px solid color-mix(in srgb, var(--border-subtle) 84%, var(--accent) 16%);
+      border-radius: 6px;
+      background: var(--bg-elevated);
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+      transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .brand:hover {
+      color: var(--accent);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border-subtle));
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+    }
+
+    :root[data-theme="dark"] .brand {
+      background: color-mix(in srgb, var(--bg-subtle) 92%, #1f2937 8%);
+      border-color: color-mix(in srgb, var(--border-subtle) 80%, var(--accent) 20%);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.76rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      position: relative;
+      padding: 0.12rem 0;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.15rem;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.is-active::after {
+      width: 100%;
+    }
+
+    .nav-links a.is-active {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* Mobile nav toggle */
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      padding: 0.25rem;
+      font-size: 1.3rem;
+      color: var(--text-main);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: var(--radius-md);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-toggle .nav-toggle-icon-close {
+      display: none;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-icon-open {
+      display: none;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-icon-close {
+      display: inline;
+    }
+
+    :root[data-theme="dark"] .nav-toggle {
+      color: var(--text-main);
+    }
+
+    /* Theme toggle */
+
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
+      transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text-main);
+      background: var(--bg-subtle);
+      border-color: color-mix(in srgb, var(--accent) 35%, var(--border-subtle));
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .theme-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .theme-icon-moon {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .theme-icon-sun {
+      display: none;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    :root[data-theme="dark"] .theme-icon-moon {
+      display: none;
+    }
+
+    :root[data-theme="dark"] .theme-icon-sun {
+      display: block;
+    }
+
+    /* =============== Search in header =============== */
+
+    .site-search {
+      margin: 0;
+    }
+
+    @media (min-width: 961px) {
+      .nav-right {
+        margin-left: auto;
+      }
+
+      .nav-links {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    .site-search input {
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.28rem 0.68rem;
+      font-size: 0.76rem;
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      min-width: 132px;
+      font-family: inherit;
+    }
+
+    .site-search input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+    }
+
+    /* =============== Search palette =============== */
+
+    body.search-open {
+      overflow: hidden;
+    }
+
+    .search-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: max(8vh, calc(env(safe-area-inset-top, 0px) + 1rem)) 1rem 1rem;
+      background: rgba(15, 23, 42, 0.4);
+    }
+
+    :root[data-theme="dark"] .search-modal {
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .search-modal.visible {
+      display: flex;
+    }
+
+    .search-modal-panel {
+      width: min(560px, 100%);
+      background: var(--bg-elevated);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 16px 48px rgba(15, 23, 42, 0.18);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      max-height: min(78vh, calc(100dvh - env(safe-area-inset-top, 0px) - 2rem));
+    }
+
+    .search-modal-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    .search-modal-icon {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    #search-dialog-input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      background: transparent;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.4;
+      padding: 0.35rem 0;
+      min-height: 44px;
+    }
+
+    #search-dialog-input:focus {
+      outline: none;
+    }
+
+    #search-dialog-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    #search-dialog-input::-webkit-search-cancel-button,
+    #search-input::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      appearance: none;
+      display: none;
+    }
+
+    #search-dialog-input::-moz-search-clear-button,
+    #search-input::-moz-search-clear-button {
+      display: none;
+    }
+
+    .search-clear-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .search-clear-btn.visible {
+      display: inline-flex;
+    }
+
+    .search-clear-btn:hover {
+      color: var(--text-main);
+      background: var(--accent-soft);
+    }
+
+    .search-results {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .search-results-status {
+      padding: 0.85rem 1rem;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .search-results-status strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .search-hint-text {
+      margin: 0 0 0.75rem;
+      font-size: 0.84rem;
+    }
+
+    .search-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .search-suggestion {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .search-suggestion:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+    }
+
+    .search-results-list {
+      list-style: none;
+      margin: 0;
+      padding: 0.35rem;
+    }
+
+    .search-result-item {
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.75rem;
+      cursor: pointer;
+      font-family: inherit;
+      color: inherit;
+      display: block;
+    }
+
+    .search-result-item:hover,
+    .search-result-item.is-selected {
+      background: var(--accent-soft);
+    }
+
+    .search-result-item {
+      min-height: 44px;
+    }
+
+    .search-result-title {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.2rem;
+    }
+
+    .search-result-snippet {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 0.2rem;
+    }
+
+    .search-result-snippet mark,
+    .search-results mark {
+      background: #fde68a;
+      color: inherit;
+      padding: 0 0.12em;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    :root[data-theme="dark"] .search-result-snippet mark,
+    :root[data-theme="dark"] .search-results mark {
+      background: #ca8a04;
+      color: #111827;
+    }
+
+    .search-result-meta {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .search-modal {
+        padding: 0;
+        align-items: stretch;
+      }
+
+      .search-modal-panel {
+        width: 100%;
+        max-height: 100dvh;
+        border-radius: 0;
+        border: none;
+      }
+
+      #search-dialog-input {
+        font-size: 16px;
+      }
+    }
+
+    /* =============== Layout =============== */
+
+    .page {
+      padding: 2rem 0 2.5rem;
+    }
+
+    .layout {
+      width: var(--content-max-width);
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: minmax(220px, 240px) minmax(0, 1fr) minmax(230px, 250px);
+      gap: 2rem;
+      align-items: flex-start;
+      min-width: 0;
+    }
+
+    .content,
+    .sidebar,
+    .right-sidebar,
+    main {
+      min-width: 0;
+    }
+
+    /* =============== Sidebar =============== */
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    @media (min-width: 961px) {
+      .sidebar {
+        position: sticky;
+        top: 5.25rem;
+      }
+
+      .right-sidebar {
+        position: sticky;
+        top: 5.25rem;
+      }
+    }
+
+    .right-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .card {
+      background: color-mix(in srgb, var(--bg-elevated) 96%, var(--accent-soft));
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.05rem 1.05rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    :root[data-theme="dark"] .card {
+      background: color-mix(in srgb, var(--bg-elevated) 94%, rgba(96, 165, 250, 0.1));
+    }
+
+    .sidebar .card:not(.card-profile),
+    .right-sidebar .card {
+      padding: 0.95rem 1rem;
+      border-left: 1px solid var(--border-subtle);
+      border-top: 2px solid color-mix(in srgb, var(--accent) 22%, var(--border-subtle));
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--bg-elevated) 98%, var(--accent-soft));
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    }
+
+    :root[data-theme="dark"] .sidebar .card:not(.card-profile),
+    :root[data-theme="dark"] .right-sidebar .card {
+      background: color-mix(in srgb, var(--bg-elevated) 96%, rgba(96, 165, 250, 0.08));
+      box-shadow: 0 1px 8px rgba(2, 6, 23, 0.35);
+    }
+
+    .card-profile {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 1rem 0.95rem;
+      border-top: 2px solid color-mix(in srgb, var(--accent) 20%, var(--border-subtle));
+      border-left: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--bg-elevated) 98%, var(--accent-soft));
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    }
+
+    :root[data-theme="dark"] .card-profile {
+      background: color-mix(in srgb, var(--bg-elevated) 96%, rgba(96, 165, 250, 0.08));
+      box-shadow: 0 1px 8px rgba(2, 6, 23, 0.35);
+    }
+
+    .profile-photo-wrapper {
+      width: 182px;
+      height: 182px;
+      margin: 0 auto 0.75rem;
+      border-radius: 50%;
+      padding: 3px;
+      background: color-mix(in srgb, var(--border-subtle) 82%, var(--accent-soft));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.06);
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg-elevated);
+      display: block;
+    }
+
+    :root[data-theme="dark"] .profile-photo {
+      border-color: var(--bg-elevated);
+    }
+
+    .profile-name {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      width: fit-content;
+      max-width: 240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .profile-role {
+      margin: 0.22rem 0 0;
+      font-size: 0.84rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .profile-affiliation {
+      font-size: 0.79rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      margin-bottom: 0;
+      display: grid;
+      gap: 0.35rem;
+      justify-items: center;  /* center each UMD/CASL block */
+    }
+
+    /* Each line: logo above, text below, both centered */
+    .affiliation-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* Bigger, cleaner logos */
+    .affiliation-logo {
+      height: 38px;
+      max-width: 170px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .affiliation-logo-umd {
+      height: 46px;
+    }
+
+    .affiliation-logo-casl {
+      transform: translateY(-2px);
+    }
+
+    .profile-affiliation a {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-decoration-color: rgba(82, 96, 121, 0.35);
+      display: inline-block;
+      text-align: center;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      max-width: 100%;
+    }
+
+    .profile-meta a {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .profile-affiliation a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    .profile-icons {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 0.15rem;
+      padding: 0;
+      margin: 0.45rem 0 0.2rem;
+    }
+
+    .profile-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: none;
+      background: transparent;
+      min-width: 36px;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+      transform-origin: center;
+      transition: transform 0.15s ease-out;
+    }
+
+    .profile-icons a:hover {
+      transform: scale(1.06);
+    }
+
+    /* Smooth small hover + make icons adaptable */
+    .profile-icons svg,
+    .profile-icons .icon-scholar-img {
+      width: 20px;
+      height: 20px;
+      display: block;
+      transform-origin: center;
+      transition: fill 0.15s ease-out, stroke 0.15s ease-out;
+    }
+
+    /* Dark theme: LinkedIn icon tweak */
+    :root[data-theme="dark"] .icon-linkedin path:first-child {
+      /* background square */
+      fill: #e5e7eb; /* LinkedIn blue, works nicely on dark */
+    }
+
+    :root[data-theme="dark"] .icon-linkedin path:last-child {
+      /* "in" glyph */
+      fill: #020617; /* light glyph for contrast */
+    }
+
+
+    /* Dark theme: fix icon colors for contrast */
+    :root[data-theme="dark"] .icon-github path {
+      fill: #e5e7eb; /* light grey on dark bg */
+    }
+
+    .icon-scholar-img {
+      border-radius: 4px;
+    }
+
+    :root[data-theme="dark"] .icon-email rect,
+    :root[data-theme="dark"] .icon-email polyline {
+      stroke: #e5e7eb; /* brighten email outline in dark mode */
+    }
+
+
+    .profile-icons a:hover .icon-email rect,
+    .profile-icons a:hover .icon-email polyline {
+      stroke: var(--accent);
+    }
+
+
+    /* Fine-tune visual sizes */
+    .profile-icons .icon-linkedin {
+      transform: scale(0.9);
+    }
+
+    .profile-icons .icon-email {
+      transform: scale(1.05);
+    }
+
+    .profile-meta {
+      margin-top: 0.2rem;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      display: grid;
+      gap: 0.2rem;
+      text-align: center;
+    }
+
+    .profile-meta i {
+      margin-right: 0.35rem;
+    }
+
+    .profile-meta a {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-decoration-color: rgba(82, 96, 121, 0.35);
+    }
+
+    .profile-meta a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    /* =============== Content Sections =============== */
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--section-gap);
+    }
+
+    /* Allow last anchor targets (e.g., #skills) to scroll below sticky header */
+    .content::after {
+      content: "";
+      display: block;
+      height: min(28vh, 220px);
+    }
+
+    .section {
+      scroll-margin-top: calc(var(--header-offset, 5rem) + 0.5rem);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border-subtle));
+      letter-spacing: -0.01em;
+    }
+
+    .lead {
+      font-size: 1.02rem;
+      color: var(--text-main);
+      margin: 0;
+      max-width: none;
+    }
+
+    /* Generic card bits */
+
+    .card-title {
+      font-size: 0.8rem;
+      margin: 0 0 0.45rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    .card-meta {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .nice-list {
+      padding-left: 1.1rem;
+      margin: 0.08rem 0 0;
+      font-size: 0.86rem;
+    }
+
+    .nice-list li + li {
+      margin-top: 0.18rem;
+    }
+
+    /* Pills list */
+
+    .pill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.4rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .pill-list li {
+      font-size: 0.8rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: #ecfeff;
+      border: 1px solid rgba(45, 212, 191, 0.5);
+    }
+
+    /* News (right sidebar) */
+
+    #news .card-news {
+      padding: 0.9rem 0.95rem 0.85rem;
+    }
+
+    #news .card-title {
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    #news .news-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #news .news-item {
+      display: grid;
+      grid-template-columns: 4.5rem minmax(0, 1fr);
+      column-gap: 0.75rem;
+      align-items: baseline;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 85%, transparent);
+    }
+
+    #news .news-item:first-child {
+      padding-top: 0.1rem;
+    }
+
+    #news .news-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    #news .news-date {
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    #news .news-item:first-child .news-date {
+      color: color-mix(in srgb, var(--accent) 78%, var(--text-main));
+    }
+
+    #news .news-text {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+
+    /* Education (right sidebar) */
+
+    #education .card-education {
+      padding: 0.9rem 0.95rem 0.85rem;
+    }
+
+    #education .card-title {
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    #education .education-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.62rem;
+    }
+
+    #education .education-item {
+      padding: 0.1rem 0 0.55rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 85%, transparent);
+    }
+
+    #education .education-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    #education .degree {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    #education .institution {
+      margin: 0.18rem 0 0;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    #education .education-meta {
+      margin-top: 0.18rem;
+      font-size: 0.76rem;
+      line-height: 1.4;
+      color: color-mix(in srgb, var(--accent) 78%, var(--text-main));
+    }
+
+    /* =============== Publications =============== */
+
+    .pub-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: pub-counter;
+    }
+
+    .pub-item {
+      counter-increment: pub-counter;
+      margin-bottom: 0;
+      padding: 1rem 0 1rem 2.25rem;
+      position: relative;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .pub-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .pub-item::before {
+      content: "[" counter(pub-counter) "]";
+      position: absolute;
+      left: 0;
+      top: 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pub-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .pub-status {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #c2410c;
+      background: #fffbeb;
+      border-radius: 999px;
+      border: 1px solid #fed7aa;
+      padding: 0.1rem 0.45rem;
+      margin-left: 0.4rem;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .pub-venue {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .pub-pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.58rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--bg-elevated);
+    }
+
+    .pub-pill i {
+      font-size: 0.75rem;
+    }
+
+    .pub-pill:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    .pub-pill.disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+    .pub-pill.paper,
+    .pub-pill.slides,
+    .pub-pill.recording {
+      font-weight: 500;
+    }
+
+    .pub-pill.status {
+      background: var(--bg-subtle);
+      border-color: var(--border-subtle);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* Dark theme overrides for publication pills */
+    :root[data-theme="dark"] .pub-pill {
+      background: var(--bg-elevated);
+      border-color: var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+
+    /* =============== Projects =============== */
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    .card .card-project {
+      background: color-mix(in srgb, var(--bg-subtle) 90%, var(--accent-soft));
+      border: 1px solid var(--border-subtle);
+      box-shadow: none;
+      padding: 1.1rem 1.15rem;
+      border-radius: var(--radius-md);
+    }
+
+    .card-project {
+      min-height: 0;
+    }
+
+    .card-project .card-title {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .card-tags-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .card-tags-inline .tag,
+    .tag {
+      font-size: 0.72rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+      font-weight: 500;
+    }
+
+    :root[data-theme="dark"] .card-tags-inline .tag,
+    :root[data-theme="dark"] .tag {
+      color: var(--text-muted);
+      border-color: var(--border-subtle);
+    }
+
+    .card-links {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .link-pill {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      text-decoration: none;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .link-pill i {
+      font-size: 0.78rem;
+    }
+
+    .link-pill:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    .link-pill.disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    /* =============== Skills =============== */
+
+    #skills .card-skills {
+      padding: 0.9rem 0.95rem 0.85rem;
+    }
+
+    #skills .card-title {
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    #skills .skills-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    #skills .skills-item {
+      padding: 0.05rem 0 0.55rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 85%, transparent);
+    }
+
+    #skills .skills-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    #skills .skills-label {
+      margin: 0;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    #skills .skills-value {
+      margin: 0.2rem 0 0;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+
+    /* =============== Contacts =============== */
+
+    #contacts .contact-card {
+      padding: 1rem 1.05rem;
+    }
+
+    #contacts .contact-intro {
+      margin: -0.2rem 0 0.85rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .contact-field {
+      display: grid;
+      gap: 0.28rem;
+    }
+
+    .contact-field label {
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .contact-field input,
+    .contact-field textarea {
+      width: 100%;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      font: inherit;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+    }
+
+    .contact-field textarea {
+      min-height: 132px;
+      resize: vertical;
+      line-height: 1.45;
+    }
+
+    .contact-field input:focus,
+    .contact-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+    }
+
+    .contact-submit {
+      justify-self: start;
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border-subtle));
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      border-radius: 10px;
+      padding: 0.5rem 0.9rem;
+      font: inherit;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+    }
+
+    .contact-submit:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--bg-subtle);
+    }
+
+    /* =============== Footer =============== */
+
+    .site-footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 1.5rem 1rem 2rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 1rem;
+      background: color-mix(in srgb, var(--bg-elevated) 92%, var(--accent-soft));
+    }
+
+    #teaching .card-title:not(.section-title) {
+      margin-top: 1.1rem;
+    }
+
+    #teaching .card-title:not(.section-title):first-of-type {
+      margin-top: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    button:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .site-search,
+      .theme-toggle,
+      .nav-toggle,
+      .search-modal,
+      .skip-link {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+        color: #000;
+      }
+
+      .layout {
+        display: block;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+      }
+
+      a {
+        color: #000;
+        text-decoration: underline;
+      }
+    }
+
+    /* =============== Responsive =============== */
+
+    @media (max-width: 960px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+        padding-inline: max(1rem, env(safe-area-inset-left, 0px)) max(1rem, env(safe-area-inset-right, 0px));
+      }
+
+      .contact-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sidebar {
+        order: -1;
+        position: static;
+      }
+
+      .right-sidebar {
+        position: static;
+      }
+
+      .page {
+        padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 0px));
+      }
+
+      .site-footer {
+        padding-bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1rem));
+      }
+    }
+
+    /* Tablet: single-column content but keep desktop nav — prevent header overflow */
+    @media (max-width: 960px) and (min-width: 769px) {
+      .navbar {
+        flex-wrap: wrap;
+        row-gap: 0.45rem;
+        padding-inline: max(1rem, env(safe-area-inset-left, 0px)) max(1rem, env(safe-area-inset-right, 0px));
+      }
+
+      .nav-left {
+        flex: 0 0 auto;
+        width: auto;
+      }
+
+      .nav-right {
+        flex: 1 1 100%;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .nav-links {
+        flex: 1 1 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.45rem 0.75rem;
+      }
+
+      .nav-links a {
+        font-size: 0.75rem;
+      }
+
+      .site-search {
+        flex: 1 1 auto;
+        min-width: 10rem;
+        max-width: 20rem;
+      }
+
+      .site-search input {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        grid-template-areas:
+          "brand toggle theme"
+          "search search search";
+        align-items: center;
+        gap: 0.42rem 0.45rem;
+        padding: 0.52rem max(1rem, env(safe-area-inset-left, 0px)) 0.6rem max(1rem, env(safe-area-inset-right, 0px));
+      }
+
+      .nav-left {
+        grid-area: brand;
+        min-width: 0;
+      }
+
+      .brand {
+        font-size: 0.74rem;
+        letter-spacing: 0.06em;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+
+      .nav-toggle {
+        grid-area: toggle;
+        display: inline-flex;
+      }
+
+      .nav-right {
+        display: contents;
+      }
+
+      .theme-toggle {
+        grid-area: theme;
+        justify-self: end;
+      }
+
+      .site-search {
+        grid-area: search;
+        width: 100%;
+      }
+
+      .site-search input {
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
+        padding: 0.45rem 0.85rem;
+        font-size: 16px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: var(--header-offset, 3.5rem);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        z-index: 1001;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.35rem max(1rem, env(safe-area-inset-right, 0px)) max(1.5rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+        background: var(--bg-elevated);
+        border-bottom: none;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        transform: translateX(100%);
+        opacity: 1;
+        pointer-events: none;
+        transition: transform 0.22s ease-out;
+        box-shadow: -4px 0 24px rgba(15, 23, 42, 0.12);
+      }
+
+      .nav-links.nav-open {
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+
+      .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+
+      .nav-links a {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        padding: 0.85rem 0;
+        min-height: 48px;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .pub-pill {
+        min-height: 40px;
+        padding: 0.35rem 0.65rem;
+        align-items: center;
+      }
+
+      .lead {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-photo-wrapper {
+        width: 142px;
+        height: 142px;
+      }
+
+      .section-title {
+        font-size: 1.2rem;
+      }
+
+      .card {
+        padding: 1rem 0.95rem;
+      }
+
+      .pub-item {
+        padding: 2.35rem 0 1rem;
+      }
+
+      .pub-item::before {
+        top: 1rem;
+        left: 0;
+        right: 0;
+      }
+
+      .site-footer div {
+        padding-inline: 0.5rem;
+        line-height: 1.5;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .brand {
+        font-size: 0.72rem;
+        letter-spacing: 0.03em;
+      }
+    }
+
+    /* Highlight for search matches */
+    .search-highlight {
+      background: #facc15;
+      padding: 0 0.04em;
+      border-radius: 3px;
+    }
+
+    :root[data-theme="dark"] .search-highlight {
+      background: #facc15;
+      color: #111827;
+    }
+
+  </style>
 </head>
 <body>
-  <main>
-    <h1>Alireza Borhani</h1>
-    <p>PhD student in Computer Science at the University of Maryland.</p>
+  <a class="skip-link" href="#about">Skip to content</a>
 
-    <h2>Research</h2>
-    <p>I work on smart-home IoT reliability, edge AI, and systems.</p>
+  <!-- Header / Navbar -->
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="#top" class="brand">ALIREZA BORHANI</a>
+      </div>
 
-    <h2>Contact</h2>
-    <p>Email: your-email@example.com</p>
-  </main>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links" id="nav-toggle">
+        <span class="nav-toggle-icon-open" aria-hidden="true">☰</span>
+        <span class="nav-toggle-icon-close" aria-hidden="true">✕</span>
+      </button>
+
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#teaching">Experience</a></li>
+          <li><a href="#contacts">Contact</a></li>
+        </ul>
+
+        <!-- Search in header -->
+        <form class="site-search" id="site-search" role="search">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search…"
+            aria-label="Search site"
+            autocomplete="off"
+            enterkeyhint="search"
+            aria-controls="search-results"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+          />
+        </form>
+
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <button type="button" class="nav-backdrop" id="nav-backdrop" aria-label="Close menu" tabindex="-1"></button>
+
+  <!-- Search palette -->
+  <div id="search-modal" class="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-dialog-label" hidden>
+    <div class="search-modal-panel">
+      <div class="search-modal-bar">
+        <span class="search-modal-icon" aria-hidden="true">⌕</span>
+        <label id="search-dialog-label" class="visually-hidden">Search</label>
+        <input
+          type="text"
+          id="search-dialog-input"
+          placeholder="Search pages, projects, publications…"
+          autocomplete="off"
+          enterkeyhint="search"
+          aria-controls="search-results"
+        />
+        <button type="button" class="search-clear-btn" id="search-clear-btn" aria-label="Clear search" hidden>✕</button>
+      </div>
+      <div id="search-results" class="search-results" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <div id="top" class="page">
+    <div class="layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Profile card -->
+        <div class="card card-profile">
+          <div class="profile-photo-wrapper">
+            <img src="IMG_4474.jpg" alt="Photo of Alireza Borhani" class="profile-photo" />
+          </div>
+          <h1 class="profile-name">Alireza Borhani</h1>
+          <p class="profile-role">Ph.D. Student in Computer Science</p>
+          <p class="profile-affiliation">
+            <span class="affiliation-line">
+              <img src="umd logo.png" alt="UMD logo" class="affiliation-logo affiliation-logo-umd" />
+              <a href="https://umd.edu/" target="_blank" rel="noopener">University of Maryland, College Park</a>
+            </span>
+            <span class="affiliation-line">
+              <img src="casl logo.png" alt="CASL logo" class="affiliation-logo affiliation-logo-casl" />
+              <a href="https://casl.cs.umd.edu/" target="_blank" rel="noopener">Computer Architecture and Systems Lab</a>
+            </span>
+          </p>
+
+          <ul class="profile-icons">
+            <!-- LinkedIn -->
+            <li>
+              <a href="https://www.linkedin.com/in/alireza-borhani-710435199"
+                 target="_blank" rel="noopener"
+                 aria-label="LinkedIn">
+                <svg class="icon-linkedin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="#0A66C2"
+                    d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
+                  />
+                  <path
+                    fill="#fff"
+                    d="M5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM3.558 20.452h3.556V9H3.558v11.452zM9 20.452h3.555v-5.569c0-1.328.027-3.037 1.852-3.037 1.853 0 2.136 1.445 2.136 2.939v5.667H20.1v-6.286c0-3.085-.667-5.455-4.27-5.455-1.733 0-2.894.95-3.37 1.85h-.049V9H9v11.452z"
+                  />
+                </svg>
+              </a>
+            </li>
+
+            <!-- Google Scholar -->
+            <li>
+              <a href="https://scholar.google.com/citations?user=DXnP0CEAAAAJ&hl=en"
+                 target="_blank" rel="noopener"
+                 aria-label="Google Scholar">
+                <img
+                  class="icon-scholar-img"
+                  src="https://scholar.google.com/favicon.ico"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+
+            <!-- GitHub -->
+            <li>
+              <a href="https://github.com/borhanialireza"
+                 target="_blank" rel="noopener"
+                 aria-label="GitHub">
+                <svg class="icon-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="#181717"
+                    d="M12 .297C5.373.297 0 5.67 0 12.297c0 5.302 3.438 9.8 8.205 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.604-2.665-.305-5.466-1.335-5.466-5.93 0-1.31.467-2.382 1.235-3.222-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3.003-.404c1.018.005 2.045.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.652.242 2.873.118 3.176.77.84 1.233 1.912 1.233 3.222 0 4.61-2.805 5.624-5.476 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .32.217.694.825.576C20.565 22.092 24 17.593 24 12.297 24 5.67 18.627.297 12 .297z"
+                  />
+                </svg>
+              </a>
+            </li>
+
+            <!-- Email -->
+            <li>
+              <a href="mailto:borhani@umd.edu"
+                 aria-label="Email">
+                <svg class="icon-email" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" ry="2"
+                        fill="none" stroke="#4B5563" stroke-width="2"/>
+                  <polyline points="4,7 12,13 20,7"
+                            fill="none" stroke="#4B5563" stroke-width="2"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+
+          <div class="profile-meta">
+            <div>
+              📍
+              <a href="https://maps.google.com/?q=Brendan+Iribe+Center+for+Computer+Science+and+Engineering,+College+Park,+MD"
+                 target="_blank" rel="noopener">
+                IRB 3256 &amp; 3218, Brendan Iribe Center, College Park, MD
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </aside>
+
+      <!-- Main content -->
+      <main class="content">
+        <!-- About -->
+        <section class="section" id="about">
+          <div class="card">
+            <h2 class="section-title">About</h2>
+            <p class="lead">
+              I am a Ph.D. student in Computer Science at the <a href="https://umd.edu/" target="_blank" rel="noopener">University of Maryland, College Park</a>. My research lies at the intersection of machine learning and systems, with a focus on resilient and efficient IoT-driven smart environments. I am particularly interested in lightweight Transformer-based methods for real-time sensing reliability, fault detection, and diagnosis at the edge.
+            </p>
+          </div>
+        </section>
+
+        <!-- Research interests -->
+        <section class="section" id="research">
+          <div class="card">
+            <h2 class="section-title">Research Interests</h2>
+            <ul class="nice-list">
+              <li>Resilient and dependable IoT systems for smart homes and smart environments</li>
+              <li>Lightweight Transformer architectures and ML models for real-time edge deployment</li>
+              <li>Hardware/software co-design for efficient ML and sensing workloads</li>
+              <li>High-performance computing systems and parallel programming frameworks</li>
+              <li>FPGA-based acceleration and reconfigurable computing</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Publications -->
+        <section class="section" id="publications">
+          <div class="card">
+            <h2 class="section-title">Publications</h2>
+
+            <ol class="pub-list">
+              <li class="pub-item">
+                <div class="pub-title">
+                  Tureis: Transformer-based Unified Resilience for IoT Devices in Smart Homes
+                </div>
+                <div class="pub-authors">
+                  A. Borhani, V. Andalibi, B. Asgari
+                </div>
+                <div class="pub-venue">
+                  Submitted to the 53rd International Symposium on Computer Architecture (ISCA), 2026.
+                </div>
+                <div class="pub-links">
+                  <a class="pub-pill paper"
+                     href="https://arxiv.org/abs/2603.10038"
+                     target="_blank" rel="noopener">
+                    arXiv
+                  </a>
+                  <span class="pub-pill status">Under review</span>
+                </div>
+              </li>
+
+              <li class="pub-item">
+                <div class="pub-title">
+                  ThingsDND: IoT Device Failure Detection and Diagnosis for Multi-User Smart Homes
+                </div>
+                <div class="pub-authors">
+                  A. Borhani, H. R. Zarandi
+                </div>
+                <div class="pub-venue">
+                  18th European Dependable Computing Conference (EDCC), pp. 113–116, 2022.
+                </div>
+                <div class="pub-links">
+                  <a class="pub-pill paper"
+                     href="https://ieeexplore.ieee.org/abstract/document/9933324"
+                     target="_blank" rel="noopener">
+                    Paper
+                  </a>
+                  <a class="pub-pill slides"
+                     href="https://drive.google.com/file/d/1I2vGrnodT92djGX0DYgaU7fw2pGEBWGk/view"
+                     target="_blank" rel="noopener">
+                    Slides
+                  </a>
+                </div>
+              </li>
+
+              <li class="pub-item">
+                <div class="pub-title">
+                  FAST: FPGA Acceleration of Neural Networks Training
+                </div>
+                <div class="pub-authors">
+                  A. Borhani, M. H. Goharinejad, H. R. Zarandi
+                </div>
+                <div class="pub-venue">
+                  12th International Conference on Computer and Knowledge Engineering (ICCKE), pp. 492–497, 2022.
+                </div>
+                <div class="pub-links">
+                  <a class="pub-pill paper"
+                     href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9960109"
+                     target="_blank" rel="noopener">
+                    Paper
+                  </a>
+                  <a class="pub-pill slides"
+                     href="https://drive.google.com/file/d/1nzpGRul54_uWriN_l0Owq-mRYp7uNqZT/view?usp=sharing"
+                     target="_blank" rel="noopener">
+                    Slides
+                  </a>
+                  <a class="pub-pill recording"
+                     href="https://drive.google.com/file/d/1CasD09xLJfBZsN8cDL0Cq_b32Qxqva7D/view?usp=sharing"
+                     target="_blank" rel="noopener">
+                    Recording
+                  </a>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="section" id="projects">
+          <div class="card">
+            <h2 class="section-title">Selected Projects</h2>
+
+            <div class="grid-2">
+              <div class="card card-project">
+                <div class="card-title">Tureis: Unified Resilience for Smart-Home IoT Devices</div>
+                <div class="card-meta">Transformer-based fault detection &amp; diagnosis · Smart homes · Edge deployment</div>
+                <ul class="nice-list">
+                  <li>Lightweight BERT-style Transformer for real-time sensor failure detection and diagnosis in smart homes.</li>
+                  <li>Bit-level sensor encodings and confidence-based fault scoring designed for edge devices.</li>
+                  <li>Targets robust, low-latency inference on resource-constrained platforms.</li>
+                </ul>
+                <div class="card-tags-inline">
+                  <span class="tag">Transformers</span>
+                  <span class="tag">Edge ML</span>
+                  <span class="tag">IoT</span>
+                  <span class="tag">Fault Detection</span>
+                </div>
+              </div>
+
+              <div class="card card-project">
+                <div class="card-title">ThingsDND: IoT Device Failure Detection &amp; Diagnosis</div>
+                <div class="card-meta">Smart-home sensing · Dependability · Anomaly detection</div>
+                <ul class="nice-list">
+                  <li>Context-aware method for detecting and diagnosing sensor failures in multi-user smart homes.</li>
+                  <li>Models correlations between heterogeneous sensors to localize the source and type of faults.</li>
+                </ul>
+                <div class="card-tags-inline">
+                  <span class="tag">Dependability</span>
+                  <span class="tag">Smart Homes</span>
+                  <span class="tag">IoT</span>
+                </div>
+              </div>
+
+              <div class="card card-project">
+                <div class="card-title">Comparative Study of Parallel Programming Frameworks</div>
+                <div class="card-meta">HPC architectures · Intel MPI · OpenMPI · Intel TBB · PSTL</div>
+                <ul class="nice-list">
+                  <li>Evaluated Intel MPI, OpenMPI, Intel TBB, and PSTL on HPC platforms.</li>
+                  <li>Analyzed scalability, communication efficiency, and performance bottlenecks.</li>
+                </ul>
+                <div class="card-tags-inline">
+                  <span class="tag">HPC</span>
+                  <span class="tag">MPI</span>
+                  <span class="tag">TBB</span>
+                  <span class="tag">Parallel Programming</span>
+                </div>
+              </div>
+
+              <div class="card card-project">
+                <div class="card-title">Hardware/Software Co-design of an Arithmetic Core</div>
+                <div class="card-meta">Reconfigurable systems · Xilinx Vivado · Arithmetic design</div>
+                <ul class="nice-list">
+                  <li>Designed and implemented an arithmetic core using Xilinx Vivado Design Suite.</li>
+                  <li>Explored resource–performance trade-offs and performance optimization for FPGA-based realizations.</li>
+                </ul>
+                <div class="card-tags-inline">
+                  <span class="tag">FPGA</span>
+                  <span class="tag">Vivado</span>
+                  <span class="tag">Hardware/Software Co-design</span>
+                </div>
+              </div>
+
+              <div class="card card-project">
+                <div class="card-title">Error-Detection Techniques in Python</div>
+                <div class="card-meta">CRC · Checksum · Hamming code</div>
+                <ul class="nice-list">
+                  <li>Implemented CRC, checksum, and Hamming code algorithms in Python.</li>
+                  <li>Compared detection capability and overhead across different error models.</li>
+                </ul>
+                <div class="card-tags-inline">
+                  <span class="tag">Python</span>
+                  <span class="tag">Error Detection</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Teaching & Experience -->
+        <section class="section" id="teaching">
+          <div class="card">
+            <h2 class="section-title">Teaching &amp; Experience</h2>
+
+            <div class="card-title">Research Assistant · University of Maryland</div>
+            <div class="card-meta">Computer Architecture and Systems Lab</div>
+            <ul class="nice-list">
+              <li>Research on resilient and efficient smart-home IoT systems, including the Tureis framework.</li>
+              <li>Focus on Transformer-based modeling, sensor encodings, and real-time edge deployment.</li>
+            </ul>
+
+            <div style="height: 0.9rem;"></div>
+
+            <div class="card-title">Teaching Assistant · CMSC 351 (Algorithms)</div>
+            <div class="card-meta">University of Maryland, College Park</div>
+            <ul class="nice-list">
+              <li>Lead discussion sections, hold office hours, and help design/grade exams and assignments.</li>
+              <li>Assist students with algorithm design, complexity analysis, and problem-solving skills.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section" id="contacts">
+          <div class="card contact-card">
+            <h2 class="section-title">Contact</h2>
+            <p class="contact-intro">Use this form to send a message.</p>
+            <form class="contact-form" action="https://formsubmit.co/borhani@umd.edu" method="POST">
+              <input type="hidden" name="_subject" value="New message from website contact form" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" />
+
+              <div class="contact-row">
+                <div class="contact-field">
+                  <label for="contact-name">Name</label>
+                  <input id="contact-name" name="name" type="text" required />
+                </div>
+                <div class="contact-field">
+                  <label for="contact-email">Email</label>
+                  <input id="contact-email" name="email" type="email" required />
+                </div>
+              </div>
+
+              <div class="contact-field">
+                <label for="contact-subject">Subject</label>
+                <input id="contact-subject" name="subject" type="text" required />
+              </div>
+
+              <div class="contact-field">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" required></textarea>
+              </div>
+
+              <button class="contact-submit" type="submit">Send Message</button>
+            </form>
+          </div>
+        </section>
+
+      </main>
+
+      <aside class="right-sidebar">
+        <section class="section" id="news">
+          <div class="card card-news">
+            <h3 class="card-title">News</h3>
+            <ul class="news-list">
+              <li class="news-item">
+                <time class="news-date" datetime="2026-04">Apr 2026</time>
+                <p class="news-text">Tureis submitted to ASPLOS 2027.</p>
+              </li>
+              <li class="news-item">
+                <time class="news-date" datetime="2025-11">Nov 2025</time>
+                <p class="news-text">Tureis submitted to ISCA 2026.</p>
+              </li>
+              <li class="news-item">
+                <time class="news-date" datetime="2025">2025</time>
+                <p class="news-text">Joined CASL as a Ph.D. student at UMD.</p>
+              </li>
+              <li class="news-item">
+                <time class="news-date" datetime="2022">2022</time>
+                <p class="news-text">Published ThingsDND and FAST in EDCC and ICCKE.</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="education">
+          <div class="card card-education">
+            <h3 class="card-title">Education</h3>
+            <ul class="education-list">
+              <li class="education-item">
+                <p class="degree">Ph.D. in Computer Science</p>
+                <p class="institution">University of Maryland, College Park, MD, USA</p>
+              </li>
+              <li class="education-item">
+                <p class="degree">M.Sc. in Computer Engineering (Computer Architecture)</p>
+                <p class="institution">Amirkabir University of Technology (Tehran Polytechnic), Tehran, Iran</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="skills">
+          <div class="card card-skills">
+            <h3 class="card-title">Skills</h3>
+            <ul class="skills-list">
+              <li class="skills-item">
+                <p class="skills-label">Programming</p>
+                <p class="skills-value">C, Python, CUDA, VHDL, Verilog, MPI, OpenMP, MATLAB</p>
+              </li>
+              <li class="skills-item">
+                <p class="skills-label">Tools</p>
+                <p class="skills-value">Xilinx Vivado, Synopsys Design Compiler, SOC Encounter, gem5, Keil, STM32CubeMX, Microsoft Visual Studio, VS Code, PlatformIO, Autodesk Fusion, Jupyter Notebook, LaTeX, Microsoft Office, Git</p>
+              </li>
+              <li class="skills-item">
+                <p class="skills-label">Operating Systems</p>
+                <p class="skills-value">Windows, Linux</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div>© 2026 Alireza Borhani · Last updated: <span id="last-updated">2026-05-28</span></div>
+  </footer>
+
+  <script>
+    // Mobile nav + header height for scroll offset / menu positioning
+    (function () {
+      const siteHeader = document.querySelector(".site-header");
+      const navToggle = document.getElementById("nav-toggle");
+      const navLinks = document.getElementById("nav-links");
+      const navBackdrop = document.getElementById("nav-backdrop");
+      const root = document.documentElement;
+      const mobileNavQuery = window.matchMedia("(max-width: 768px)");
+
+      function updateHeaderOffset() {
+        if (!siteHeader) return;
+        root.style.setProperty("--header-offset", siteHeader.offsetHeight + "px");
+      }
+
+      function setMenuOpen(open) {
+        if (!navLinks || !navToggle) return;
+        navLinks.classList.toggle("nav-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        document.body.classList.toggle("nav-menu-open", open);
+        if (navBackdrop) {
+          navBackdrop.classList.toggle("visible", open);
+          navBackdrop.tabIndex = open ? 0 : -1;
+        }
+      }
+
+      function closeMenu() {
+        setMenuOpen(false);
+      }
+
+      updateHeaderOffset();
+      window.addEventListener("resize", updateHeaderOffset, { passive: true });
+      window.addEventListener("orientationchange", updateHeaderOffset);
+
+      if (navToggle && navLinks) {
+        navToggle.addEventListener("click", () => {
+          setMenuOpen(!navLinks.classList.contains("nav-open"));
+        });
+
+        navLinks.querySelectorAll('a[href^="#"]').forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+      }
+
+      if (navBackdrop) {
+        navBackdrop.addEventListener("click", closeMenu);
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          navLinks &&
+          navLinks.classList.contains("nav-open") &&
+          !document.getElementById("search-modal")?.classList.contains("visible")
+        ) {
+          closeMenu();
+          navToggle && navToggle.focus();
+        }
+      });
+
+      mobileNavQuery.addEventListener("change", (e) => {
+        if (!e.matches) closeMenu();
+        updateHeaderOffset();
+      });
+
+      // Highlight active section in navbar while scrolling
+      const navAnchors = Array.from(
+        document.querySelectorAll('.nav-links a[href^="#"]')
+      );
+      if (!navAnchors.length) return;
+
+      const sectionMap = navAnchors
+        .map((link) => {
+          const id = link.getAttribute("href").slice(1);
+          const section = document.getElementById(id);
+          return section ? { link, section } : null;
+        })
+        .filter(Boolean)
+        .sort((a, b) => {
+          const pos = a.section.compareDocumentPosition(b.section);
+          if (pos & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+          if (pos & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+          return 0;
+        });
+
+      if (!sectionMap.length) return;
+
+      function setActiveLink() {
+        const offset = (parseFloat(getComputedStyle(root).getPropertyValue("--header-offset")) || 80) + 12;
+        let current = sectionMap[0];
+
+        sectionMap.forEach((entry) => {
+          if (entry.section.getBoundingClientRect().top - offset <= 0) {
+            current = entry;
+          }
+        });
+
+        navAnchors.forEach((a) => a.classList.remove("is-active"));
+        current.link.classList.add("is-active");
+      }
+
+      setActiveLink();
+      window.addEventListener("scroll", setActiveLink, { passive: true });
+    })();
+
+    // Light / dark theme (system preference on first visit, then remembered)
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById("theme-toggle");
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function updateToggleLabel(theme) {
+        if (!btn) return;
+        btn.setAttribute(
+          "aria-label",
+          theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+        );
+      }
+
+      function applyTheme(theme, persist) {
+        root.dataset.theme = theme;
+        updateToggleLabel(theme);
+        if (persist) localStorage.setItem("theme", theme);
+      }
+
+      function initTheme() {
+        const stored = localStorage.getItem("theme");
+        if (stored === "light" || stored === "dark") {
+          applyTheme(stored, false);
+        } else {
+          applyTheme(media.matches ? "dark" : "light", false);
+        }
+      }
+
+      initTheme();
+
+      if (btn) {
+        btn.addEventListener("click", () => {
+          const next = root.dataset.theme === "dark" ? "light" : "dark";
+          applyTheme(next, true);
+        });
+      }
+
+      media.addEventListener("change", (e) => {
+        if (localStorage.getItem("theme")) return;
+        applyTheme(e.matches ? "dark" : "light", false);
+      });
+    })();
+
+    // Footer "Site last updated" automatic date (based on document.lastModified)
+    (function () {
+      const el = document.getElementById("last-updated");
+      if (!el) return;
+
+      const lm = document.lastModified;
+      if (!lm) return;
+
+      const d = new Date(lm);
+      if (isNaN(d.getTime())) return;
+
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      el.textContent = `${yyyy}-${mm}-${dd}`;
+    })();
+
+    // Site search: live results, snippets, keyboard navigation
+    (function () {
+      const form = document.getElementById("site-search");
+      const headerInput = document.getElementById("search-input");
+      const dialogInput = document.getElementById("search-dialog-input");
+      const modal = document.getElementById("search-modal");
+      const resultsBox = document.getElementById("search-results");
+      const clearBtn = document.getElementById("search-clear-btn");
+      if (!form || !headerInput || !dialogInput || !resultsBox || !modal) return;
+
+      const SUGGESTIONS = ["Tureis", "IoT", "FPGA", "transformer", "CASL", "algorithms"];
+      const searchRegions = buildSearchRegions();
+
+      if (!searchRegions.length) return;
+
+      let lastQuery = "";
+      let currentResults = [];
+      let selectedIndex = 0;
+      let debounceTimer = null;
+
+      function buildSearchRegions() {
+        const regions = [];
+
+        document.querySelectorAll("main .section").forEach((section) => {
+          const titleEl = section.querySelector(".section-title");
+          regions.push({
+            id: section.id,
+            el: section,
+            title: titleEl ? titleEl.textContent.trim() : section.id || "Section",
+          });
+        });
+
+        document.querySelectorAll(".sidebar .card, .right-sidebar .card").forEach((card) => {
+          if (card.classList.contains("card-profile")) return;
+          const titleEl = card.querySelector(".card-title");
+          if (!titleEl) return;
+          if (!card.id) {
+            card.id =
+              "search-" +
+              titleEl.textContent
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/(^-|-$)/g, "");
+          }
+          regions.push({
+            id: card.id,
+            el: card,
+            title: titleEl.textContent.trim(),
+          });
+        });
+
+        return regions.filter((r) => r.id && r.el);
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/[&<>"']/g, (c) =>
+          ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] || c
+        );
+      }
+
+      function escapeRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      }
+
+      function queryWords(query) {
+        return query
+          .toLowerCase()
+          .split(/\s+/)
+          .map((w) => w.trim())
+          .filter(Boolean);
+      }
+
+      function matchesQuery(text, query) {
+        const words = queryWords(query);
+        if (!words.length) return false;
+        const lower = text.toLowerCase();
+        return words.every((w) => lower.includes(w));
+      }
+
+      function countMatches(text, query) {
+        const lower = text.toLowerCase();
+        return queryWords(query).reduce((sum, word) => {
+          let count = 0;
+          let idx = 0;
+          while ((idx = lower.indexOf(word, idx)) !== -1) {
+            count += 1;
+            idx += word.length;
+          }
+          return sum + count;
+        }, 0);
+      }
+
+      function scoreResult(text, title, query) {
+        const lower = text.toLowerCase();
+        const titleLower = title.toLowerCase();
+        let score = countMatches(text, query);
+        queryWords(query).forEach((word) => {
+          if (titleLower.includes(word)) score += 4;
+        });
+        if (titleLower.includes(query.toLowerCase())) score += 8;
+        const firstIdx = lower.indexOf(queryWords(query)[0] || "");
+        if (firstIdx >= 0 && firstIdx < 120) score += 2;
+        return score;
+      }
+
+      function buildSnippet(text, query) {
+        const normalized = text.replace(/\s+/g, " ").trim();
+        const lower = normalized.toLowerCase();
+        const words = queryWords(query);
+        let idx = -1;
+        for (const word of words) {
+          idx = lower.indexOf(word);
+          if (idx !== -1) break;
+        }
+        if (idx === -1) return "";
+        const start = Math.max(0, idx - 55);
+        const end = Math.min(normalized.length, idx + query.length + 55);
+        let snippet = normalized.slice(start, end);
+        if (start > 0) snippet = "…" + snippet;
+        if (end < normalized.length) snippet += "…";
+        return snippet;
+      }
+
+      function highlightInHtml(text, query) {
+        let html = escapeHtml(text);
+        queryWords(query).forEach((word) => {
+          const re = new RegExp(escapeRegex(word), "gi");
+          html = html.replace(re, (m) => `<mark>${escapeHtml(m)}</mark>`);
+        });
+        return html;
+      }
+
+      function runSearch(query) {
+        const q = query.trim();
+        lastQuery = q;
+
+        if (!q) {
+          currentResults = [];
+          selectedIndex = 0;
+          renderIdleState();
+          return;
+        }
+
+        const results = [];
+
+        searchRegions.forEach((region) => {
+          const text = region.el.textContent || "";
+          if (!matchesQuery(text, q)) return;
+          const count = countMatches(text, q);
+          const snippet = buildSnippet(text, q);
+          results.push({
+            id: region.id,
+            title: region.title,
+            count,
+            snippet,
+            score: scoreResult(text, region.title, q),
+          });
+        });
+
+        results.sort((a, b) => b.score - a.score || b.count - a.count);
+        currentResults = results;
+        selectedIndex = 0;
+        renderResults(q, results);
+      }
+
+      function renderIdleState() {
+        const chips = SUGGESTIONS.map(
+          (s) =>
+            `<li><button type="button" class="search-suggestion" data-suggestion="${escapeHtml(s)}">${escapeHtml(s)}</button></li>`
+        ).join("");
+
+        resultsBox.innerHTML = `
+          <div class="search-results-status">
+            <p class="search-hint-text">Try a topic or keyword:</p>
+            <ul class="search-suggestions">${chips}</ul>
+          </div>`;
+      }
+
+      function renderResults(query, results) {
+        if (!results.length) {
+          resultsBox.innerHTML = `
+            <div class="search-results-status">
+              No results for <strong>${escapeHtml(query)}</strong>.
+              Try fewer words or another keyword.
+            </div>`;
+          return;
+        }
+
+        const totalMatches = results.reduce((n, r) => n + r.count, 0);
+        let html = `
+          <div class="search-results-status">
+            <strong>${results.length}</strong> section${results.length > 1 ? "s" : ""}
+            · <strong>${totalMatches}</strong> match${totalMatches > 1 ? "es" : ""}
+          </div>
+          <ul class="search-results-list" role="listbox" aria-label="Search results">`;
+
+        results.forEach((r, i) => {
+          const selectedClass = i === selectedIndex ? " is-selected" : "";
+          const ariaSelected = i === selectedIndex ? "true" : "false";
+          const snippetHtml = r.snippet
+            ? `<span class="search-result-snippet">${highlightInHtml(r.snippet, query)}</span>`
+            : "";
+          html += `
+            <li role="presentation">
+              <button
+                type="button"
+                class="search-result-item${selectedClass}"
+                data-target="${escapeHtml(r.id)}"
+                data-index="${i}"
+                role="option"
+                aria-selected="${ariaSelected}"
+              >
+                <span class="search-result-title">${escapeHtml(r.title)}</span>
+                ${snippetHtml}
+                <span class="search-result-meta">${r.count} match${r.count > 1 ? "es" : ""}</span>
+              </button>
+            </li>`;
+        });
+
+        html += "</ul>";
+        resultsBox.innerHTML = html;
+        scrollSelectedIntoView();
+      }
+
+      function scrollSelectedIntoView() {
+        const selected = resultsBox.querySelector(".search-result-item.is-selected");
+        if (selected) selected.scrollIntoView({ block: "nearest" });
+      }
+
+      function syncInputs(value) {
+        headerInput.value = value;
+        dialogInput.value = value;
+        updateClearButton();
+      }
+
+      function updateClearButton() {
+        if (!clearBtn) return;
+        const hasValue = dialogInput.value.length > 0;
+        clearBtn.classList.toggle("visible", hasValue);
+        clearBtn.hidden = !hasValue;
+      }
+
+      function clearSearchText() {
+        syncInputs("");
+        runSearch("");
+        dialogInput.focus();
+      }
+
+      function openSearch() {
+        const navLinks = document.getElementById("nav-links");
+        const navBackdrop = document.getElementById("nav-backdrop");
+        const navToggle = document.getElementById("nav-toggle");
+        if (navLinks && navLinks.classList.contains("nav-open")) {
+          navLinks.classList.remove("nav-open");
+          document.body.classList.remove("nav-menu-open");
+          navBackdrop && navBackdrop.classList.remove("visible");
+          navToggle && navToggle.setAttribute("aria-expanded", "false");
+        }
+
+        modal.classList.add("visible");
+        modal.removeAttribute("hidden");
+        document.body.classList.add("search-open");
+        headerInput.setAttribute("aria-expanded", "true");
+        syncInputs(headerInput.value);
+        runSearch(dialogInput.value);
+        requestAnimationFrame(() => {
+          dialogInput.focus();
+          const len = dialogInput.value.length;
+          dialogInput.setSelectionRange(len, len);
+        });
+      }
+
+      function closeSearch() {
+        modal.classList.remove("visible");
+        modal.setAttribute("hidden", "");
+        document.body.classList.remove("search-open");
+        headerInput.setAttribute("aria-expanded", "false");
+        syncInputs(dialogInput.value);
+      }
+
+      function clearHighlights(root) {
+        root.querySelectorAll(".search-highlight").forEach((el) => {
+          const parent = el.parentNode;
+          if (!parent) return;
+          parent.replaceChild(document.createTextNode(el.textContent), el);
+          parent.normalize();
+        });
+      }
+
+      function highlightWordInElement(container, word) {
+        if (!word) return;
+        const regex = new RegExp(escapeRegex(word), "gi");
+
+        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            if (!regex.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+            regex.lastIndex = 0;
+            return NodeFilter.FILTER_ACCEPT;
+          },
+        });
+
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        textNodes.forEach((node) => {
+          const text = node.nodeValue;
+          const frag = document.createDocumentFragment();
+          let lastIndex = 0;
+          let match;
+          regex.lastIndex = 0;
+          while ((match = regex.exec(text)) !== null) {
+            const start = match.index;
+            const end = start + match[0].length;
+            if (start > lastIndex) {
+              frag.appendChild(document.createTextNode(text.slice(lastIndex, start)));
+            }
+            const span = document.createElement("span");
+            span.className = "search-highlight";
+            span.textContent = text.slice(start, end);
+            frag.appendChild(span);
+            lastIndex = end;
+          }
+          if (lastIndex < text.length) {
+            frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+          }
+          if (node.parentNode) node.parentNode.replaceChild(frag, node);
+        });
+      }
+
+      function highlightInElement(container, query) {
+        const seen = new Set();
+        queryWords(query).forEach((word) => {
+          if (seen.has(word)) return;
+          seen.add(word);
+          highlightWordInElement(container, word);
+        });
+      }
+
+      function navigateToResult(id, query) {
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        const scrollTarget = target.querySelector(".card") || target;
+        clearHighlights(document.body);
+        highlightInElement(scrollTarget, query);
+        scrollTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+        closeSearch();
+      }
+
+      function scheduleSearch(value) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => runSearch(value), 160);
+      }
+
+      function setSelectedIndex(index) {
+        if (!currentResults.length) return;
+        selectedIndex = (index + currentResults.length) % currentResults.length;
+        renderResults(lastQuery, currentResults);
+      }
+
+      renderIdleState();
+      updateClearButton();
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          clearSearchText();
+        });
+      }
+
+      headerInput.addEventListener("focus", () => {
+        if (!modal.classList.contains("visible")) openSearch();
+      });
+
+      headerInput.addEventListener("input", () => {
+        syncInputs(headerInput.value);
+        if (!modal.classList.contains("visible")) openSearch();
+        scheduleSearch(headerInput.value);
+      });
+
+      dialogInput.addEventListener("input", () => {
+        syncInputs(dialogInput.value);
+        scheduleSearch(dialogInput.value);
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!modal.classList.contains("visible")) openSearch();
+        runSearch(dialogInput.value);
+        if (currentResults.length) {
+          navigateToResult(currentResults[selectedIndex].id, lastQuery);
+        }
+      });
+
+      resultsBox.addEventListener("click", (e) => {
+        const suggestion = e.target.closest("[data-suggestion]");
+        if (suggestion) {
+          const term = suggestion.getAttribute("data-suggestion") || "";
+          syncInputs(term);
+          runSearch(term);
+          dialogInput.focus();
+          return;
+        }
+
+        const item = e.target.closest(".search-result-item");
+        if (!item) return;
+        const id = item.getAttribute("data-target");
+        if (!id) return;
+        navigateToResult(id, lastQuery);
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeSearch();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          openSearch();
+          return;
+        }
+
+        if (!modal.classList.contains("visible")) return;
+
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeSearch();
+          headerInput.blur();
+          return;
+        }
+
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          setSelectedIndex(selectedIndex + 1);
+          return;
+        }
+
+        if (e.key === "ArrowUp") {
+          e.preventDefault();
+          setSelectedIndex(selectedIndex - 1);
+          return;
+        }
+
+        if (e.key === "Enter" && e.target === dialogInput && currentResults.length) {
+          e.preventDefault();
+          navigateToResult(currentResults[selectedIndex].id, lastQuery);
+        }
+      });
+
+      const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+      const shortcutHint = isMac ? "⌘K" : "Ctrl+K";
+      headerInput.placeholder = `Search… (${shortcutHint})`;
+      dialogInput.placeholder = "Search pages, projects, publications…";
+    })();
+  </script>
 </body>
 </html>
