@@ -1409,6 +1409,10 @@
       padding-bottom: 0;
     }
 
+    #projects .project-showcase-main > .project-card:last-child {
+      border-bottom: none;
+    }
+
     #projects .project-showcase-additional > .project-card:last-child {
       border-bottom: none;
     }
@@ -1587,12 +1591,57 @@
     }
 
     #projects .projects-additional-heading {
-      margin: 0 0 0.7rem;
+      margin: 0 0 0.65rem;
       font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
+    }
+
+    #projects .projects-additional-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.85rem;
+    }
+
+    #projects .projects-additional-filter {
+      font: inherit;
+      font-size: 0.74rem;
+      font-weight: 500;
+      line-height: 1.3;
+      padding: 0.22rem 0.62rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    #projects .projects-additional-filter:hover {
+      color: var(--text-main);
+      border-color: color-mix(in srgb, var(--accent) 28%, var(--border-subtle));
+    }
+
+    #projects .projects-additional-filter:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    #projects .projects-additional-filter.is-active {
+      background: var(--accent-soft);
+      border-color: color-mix(in srgb, var(--accent) 35%, var(--border-subtle));
+      color: var(--accent-dark);
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-filter.is-active {
+      color: var(--accent);
+    }
+
+    #projects .project-showcase-additional .project-card.is-filtered-out {
+      display: none;
     }
 
     #projects .project-showcase-additional .project-card {
@@ -1612,7 +1661,7 @@
     #projects .project-showcase-additional .project-summary {
       font-size: 0.82rem;
       line-height: 1.52;
-      margin-bottom: 0.42rem;
+      margin-bottom: 0;
     }
 
     #projects .project-showcase-additional .project-metrics li {
@@ -2477,30 +2526,42 @@
 
             <div class="projects-additional">
               <h3 class="projects-additional-heading">Additional Projects</h3>
+              <div class="projects-additional-filters" role="tablist" aria-label="Filter additional projects">
+                <button type="button" class="projects-additional-filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+                <button type="button" class="projects-additional-filter" data-filter="architecture-memory" role="tab" aria-selected="false">Architecture &amp; Memory</button>
+                <button type="button" class="projects-additional-filter" data-filter="hardware-design" role="tab" aria-selected="false">Hardware Design</button>
+                <button type="button" class="projects-additional-filter" data-filter="eda-vlsi" role="tab" aria-selected="false">EDA &amp; VLSI</button>
+              </div>
               <ol class="project-showcase project-showcase-additional">
-                <li class="project-card">
+                <li class="project-card" data-categories="hardware-design eda-vlsi">
                   <div class="project-card-inner">
                     <div class="project-copy">
-                      <h3 class="project-title">Comparative Study of Parallel Programming Frameworks</h3>
-                      <p class="project-summary">Evaluated MPI, TBB, and parallel programming frameworks across HPC workloads, focusing on scalability, communication overhead, and performance bottlenecks.</p>
-                      <ul class="project-metrics" aria-label="Key areas">
-                        <li>High-Performance Computing</li>
-                        <li>Parallel Programming</li>
-                        <li>Performance Analysis</li>
-                      </ul>
+                      <h3 class="project-title">RTL-to-GDS Digital Design Flow</h3>
+                      <p class="project-summary">Implemented a complete RTL-to-layout flow for a 13K-cell arithmetic core using Synopsys Design Compiler and Cadence Encounter SoC. Starting from Verilog RTL, the design was synthesized with a TSMC 180nm standard-cell library, evaluated through area, timing, and power reports, and optimized under both minimum-area and target-frequency constraints. The synthesized netlist and constraints were then used for floorplanning, power routing, placement, clock routing, signal routing, filler-cell insertion, timing verification, DRC/connectivity checks, and final GDS generation.</p>
                     </div>
                   </div>
                 </li>
-                <li class="project-card">
+                <li class="project-card" data-categories="architecture-memory">
                   <div class="project-card-inner">
                     <div class="project-copy">
-                      <h3 class="project-title">Hardware/Software Co-Design of an Arithmetic Core</h3>
-                      <p class="project-summary">Designed and implemented an FPGA-based arithmetic core, exploring resource–performance trade-offs using Xilinx Vivado.</p>
-                      <ul class="project-metrics" aria-label="Key areas">
-                        <li>Reconfigurable Computing</li>
-                        <li>FPGA Design</li>
-                        <li>Vivado</li>
-                      </ul>
+                      <h3 class="project-title">SRAM vs. STT-RAM Cache Energy Modeling</h3>
+                      <p class="project-summary">Developed a simulation-based evaluation flow for comparing SRAM and STT-RAM L2 cache designs using gem5 and NVSim. PARSEC workloads were executed in gem5 full-system simulation with a modeled L1/L2 cache hierarchy to collect workload-specific L2 read/write access statistics. These access profiles were then combined with NVSim memory models to estimate read energy, write energy, and leakage power, enabling a workload-aware comparison of cache energy behavior across memory technologies.</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="project-card" data-categories="hardware-design">
+                  <div class="project-card-inner">
+                    <div class="project-copy">
+                      <h3 class="project-title">FPGA-Based Hardware/Software Co-Design and Validation</h3>
+                      <p class="project-summary">Evaluated the Tiny Tate Bilinear Pairing arithmetic core through an FPGA-based hardware/software co-design flow. The project involved analyzing a hierarchical Verilog design composed of datapath, RAM, ROM, control, and processing modules; synthesizing the design with Xilinx ISE for a Spartan-3 FPGA; and validating its behavior using ISim simulation. Functional correctness was verified through Verilog testbenches that wrote input operands into RAM, triggered the computation, read back the generated outputs, and compared them against expected results.</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="project-card" data-categories="eda-vlsi">
+                  <div class="project-card-inner">
+                    <div class="project-copy">
+                      <h3 class="project-title">Simulated Annealing for VLSI Standard-Cell Placement</h3>
+                      <p class="project-summary">Implemented a simulated-annealing-based placement algorithm for standard-cell VLSI physical design by extending a C/C++ placement framework and its internal design database. The project optimized cell locations using wirelength-aware cost evaluation while preserving row-based, overlap-free layout constraints. The implementation included benchmark parsing, cell-move generation, cost estimation based on half-perimeter wirelength, iterative placement refinement, and graphical validation of the final layout.</p>
                     </div>
                   </div>
                 </li>
@@ -3309,6 +3370,37 @@
       });
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+      });
+    })();
+
+    (function initAdditionalProjectFilters() {
+      const section = document.querySelector(".projects-additional");
+      if (!section) return;
+
+      const filters = section.querySelectorAll(".projects-additional-filter");
+      const cards = section.querySelectorAll(".project-showcase-additional .project-card");
+
+      filters.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filter = btn.getAttribute("data-filter");
+          if (!filter) return;
+
+          filters.forEach((b) => {
+            const active = b === btn;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-selected", active ? "true" : "false");
+          });
+
+          cards.forEach((card) => {
+            if (filter === "all") {
+              card.classList.remove("is-filtered-out");
+              return;
+            }
+
+            const categories = (card.getAttribute("data-categories") || "").split(/\s+/);
+            card.classList.toggle("is-filtered-out", !categories.includes(filter));
+          });
+        });
       });
     })();
   </script>
