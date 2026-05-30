@@ -1664,6 +1664,235 @@
       margin-bottom: 0;
     }
 
+    #projects .project-showcase-additional .project-demos {
+      margin-top: 0.5rem;
+      padding: 0;
+    }
+
+    #projects .project-demos-lead {
+      margin: 0 0 0.45rem;
+      font-size: 0.82rem;
+      line-height: 1.52;
+      color: var(--text-muted);
+    }
+
+    #projects .project-demo-catalog {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.45rem;
+    }
+
+    #projects .project-demo-catalog > li {
+      min-width: 0;
+    }
+
+    #projects .project-demo-entry {
+      appearance: none;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.38rem;
+      padding: 0.4rem;
+      border: 1px solid color-mix(in srgb, var(--border-subtle) 92%, transparent);
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--bg-subtle) 45%, var(--bg-elevated));
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+
+    #projects .project-demo-entry:hover {
+      border-color: color-mix(in srgb, var(--accent) 24%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 22%, var(--bg-elevated));
+    }
+
+    #projects .project-demo-entry:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    #projects .project-demo-entry-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: #0b1220;
+      flex-shrink: 0;
+    }
+
+    #projects .project-demo-entry-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #projects .project-demo-entry-play {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(15, 23, 42, 0.1);
+      color: var(--accent);
+      pointer-events: none;
+      transition: background 0.18s ease;
+    }
+
+    #projects .project-demo-entry-play::before {
+      content: "";
+      position: absolute;
+      width: 1.65rem;
+      height: 1.65rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+    }
+
+    #projects .project-demo-entry-play svg {
+      position: relative;
+      z-index: 1;
+      width: 0.68rem;
+      height: 0.68rem;
+      margin-left: 0.05rem;
+      fill: currentColor;
+      opacity: 0.88;
+    }
+
+    #projects .project-demo-entry:hover .project-demo-entry-play {
+      background: rgba(15, 23, 42, 0.18);
+    }
+
+    #projects .project-demo-entry:hover .project-demo-entry-play::before {
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    #projects .project-demo-entry-body {
+      display: block;
+      min-width: 0;
+    }
+
+    #projects .project-demo-entry-title {
+      font-size: 0.76rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text-main);
+    }
+
+    @media (max-width: 720px) {
+      #projects .project-demo-catalog {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 420px) {
+      #projects .project-demo-catalog {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Demo video modal */
+    .demo-cinema {
+      position: fixed;
+      inset: 0;
+      z-index: 2100;
+      display: grid;
+      place-items: center;
+      padding: 1.25rem;
+    }
+
+    .demo-cinema[hidden] {
+      display: none;
+    }
+
+    .demo-cinema-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .demo-cinema-panel {
+      position: relative;
+      width: min(880px, 96vw);
+      max-height: calc(100vh - 2.5rem);
+      overflow: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      box-shadow: 0 20px 48px rgba(15, 23, 42, 0.22);
+      padding: 1rem 1rem 0.95rem;
+    }
+
+    :root[data-theme="dark"] .demo-cinema-panel {
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    .demo-cinema-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 2;
+      width: 1.85rem;
+      height: 1.85rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .demo-cinema-close:hover {
+      color: var(--text-main);
+      border-color: color-mix(in srgb, var(--accent) 30%, var(--border-subtle));
+    }
+
+    .demo-cinema-head {
+      padding-right: 2rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .demo-cinema-series {
+      margin: 0 0 0.2rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--accent);
+    }
+
+    .demo-cinema-title {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.38;
+      color: var(--text-main);
+    }
+
+    .demo-cinema-player-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0b1220;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .demo-cinema-player-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     #projects .project-showcase-additional .project-metrics li {
       font-size: 0.68rem;
       padding: 0.12rem 0.42rem;
@@ -2528,11 +2757,29 @@
               <h3 class="projects-additional-heading">Additional Projects</h3>
               <div class="projects-additional-filters" role="tablist" aria-label="Filter additional projects">
                 <button type="button" class="projects-additional-filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+                <button type="button" class="projects-additional-filter" data-filter="hpc" role="tab" aria-selected="false">HPC</button>
                 <button type="button" class="projects-additional-filter" data-filter="architecture-memory" role="tab" aria-selected="false">Architecture &amp; Memory</button>
                 <button type="button" class="projects-additional-filter" data-filter="hardware-design" role="tab" aria-selected="false">Hardware Design</button>
+                <button type="button" class="projects-additional-filter" data-filter="embedded-systems" role="tab" aria-selected="false">Embedded Systems</button>
                 <button type="button" class="projects-additional-filter" data-filter="eda-vlsi" role="tab" aria-selected="false">EDA &amp; VLSI</button>
               </div>
               <ol class="project-showcase project-showcase-additional">
+                <li class="project-card" data-categories="hardware-design">
+                  <div class="project-card-inner">
+                    <div class="project-copy">
+                      <h3 class="project-title">FPGA-Oriented Sparse Matrix Storage and Dataflow Analysis</h3>
+                      <p class="project-summary">Studied sparse-matrix storage formats and compute dataflows for FPGA-style accelerators. The project compared CSR, COO, BCSR, and FPGA-friendly LIL-style layouts in terms of metadata overhead, storage efficiency, decompression cost, BRAM access patterns, and parallel-read feasibility. It also evaluated inner-product, outer-product, systolic-array, and adder-tree dataflows to analyze latency, memory traffic, energy consumption, operand reuse, and scheduling trade-offs in sparse-matrix computation.</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="project-card" data-categories="hpc">
+                  <div class="project-card-inner">
+                    <div class="project-copy">
+                      <h3 class="project-title">Comparative Study of Parallel Programming Frameworks</h3>
+                      <p class="project-summary">Evaluated shared-memory and message-passing parallel programming frameworks on the Zaratan HPC cluster, comparing OpenMP, Intel TBB, C++ Parallel STL, OpenMPI, and Intel MPI across NAS Parallel Benchmarks and SPEC HPC workloads. The project involved porting selected benchmark kernels, running scalability experiments across thread counts and MPI-rank configurations, and using Intel VTune and HPCToolkit to analyze performance bottlenecks related to communication overhead, synchronization cost, NUMA effects, memory behavior, load balance, and framework-level runtime overhead.</p>
+                    </div>
+                  </div>
+                </li>
                 <li class="project-card" data-categories="hardware-design eda-vlsi">
                   <div class="project-card-inner">
                     <div class="project-copy">
@@ -2562,6 +2809,85 @@
                     <div class="project-copy">
                       <h3 class="project-title">Simulated Annealing for VLSI Standard-Cell Placement</h3>
                       <p class="project-summary">Implemented a simulated-annealing-based placement algorithm for standard-cell VLSI physical design by extending a C/C++ placement framework and its internal design database. The project optimized cell locations using wirelength-aware cost evaluation while preserving row-based, overlap-free layout constraints. The implementation included benchmark parsing, cell-move generation, cost estimation based on half-perimeter wirelength, iterative placement refinement, and graphical validation of the final layout.</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="project-card" data-categories="embedded-systems">
+                  <div class="project-card-inner">
+                    <div class="project-copy">
+                      <h3 class="project-title">Embedded Sensing, Actuation, and Rapid Prototyping</h3>
+                      <p class="project-summary">Designed and implemented a series of ESP32-based embedded systems integrating sensor input, actuator control, wireless communication, and custom-fabricated mechanical components, including Morse-code LED signaling, a light-sensor-based audio feedback game, a 3D-printed ultrasonic radar platform with servo-driven scanning, an IMU-based LED tilt indicator, a remotely controlled bridge-crossing robot, and a multi-node wireless musical robotics system with real-time beat synchronization, per-node pitch control, buzzer-based audio output, LED feedback, custom 3D-printed enclosures, and laser-cut structural components.</p>
+                      <div class="project-demos" id="embedded-demo-gallery" aria-label="Video recordings for Embedded Sensing, Actuation, and Rapid Prototyping">
+                        <p class="project-demos-lead">Demo videos:</p>
+                        <ul class="project-demo-catalog">
+                          <li>
+                            <button type="button" class="project-demo-entry" data-demo-index="0" data-video-id="gtRkZIT6Jrw" data-title="Morse Code Signaling" data-meta="Recording of the Morse-code LED signaling build from this ESP32 rapid-prototyping series." data-short="Morse-code LED signaling" data-thumb="https://img.youtube.com/vi/gtRkZIT6Jrw/hqdefault.jpg" data-youtube="https://youtube.com/shorts/gtRkZIT6Jrw" aria-label="Play Morse Code Signaling demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                              <span class="project-demo-entry-thumb">
+                                <img src="https://img.youtube.com/vi/gtRkZIT6Jrw/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
+                                <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
+                              </span>
+                              <span class="project-demo-entry-body">
+                                <span class="project-demo-entry-title">Morse Code Signaling</span>
+                              </span>
+                            </button>
+                          </li>
+                          <li>
+                            <button type="button" class="project-demo-entry" data-demo-index="1" data-video-id="3oZRY-yPwxA" data-title="Light-Sensor Audio Game" data-meta="Recording of the light-sensor-based audio feedback game from this ESP32 rapid-prototyping series." data-short="Light-sensor audio game" data-thumb="https://img.youtube.com/vi/3oZRY-yPwxA/hqdefault.jpg" data-youtube="https://youtube.com/shorts/3oZRY-yPwxA" aria-label="Play Light-Sensor Audio Game demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                              <span class="project-demo-entry-thumb">
+                                <img src="https://img.youtube.com/vi/3oZRY-yPwxA/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
+                                <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
+                              </span>
+                              <span class="project-demo-entry-body">
+                                <span class="project-demo-entry-title">Light-Sensor Audio Game</span>
+                              </span>
+                            </button>
+                          </li>
+                          <li>
+                            <button type="button" class="project-demo-entry" data-demo-index="2" data-video-id="UCZVEEKQHrQ" data-title="Ultrasonic Radar Platform" data-meta="Recording of the 3D-printed ultrasonic radar platform with servo-driven scanning from this ESP32 rapid-prototyping series." data-short="Ultrasonic radar platform" data-thumb="https://img.youtube.com/vi/UCZVEEKQHrQ/hqdefault.jpg" data-youtube="https://youtube.com/shorts/UCZVEEKQHrQ" aria-label="Play Ultrasonic Radar Platform demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                              <span class="project-demo-entry-thumb">
+                                <img src="https://img.youtube.com/vi/UCZVEEKQHrQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
+                                <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
+                              </span>
+                              <span class="project-demo-entry-body">
+                                <span class="project-demo-entry-title">Ultrasonic Radar Platform</span>
+                              </span>
+                            </button>
+                          </li>
+                          <li>
+                            <button type="button" class="project-demo-entry" data-demo-index="3" data-video-id="yotXrTaVWc4" data-title="IMU Tilt Indicator" data-meta="Recording of the IMU-based LED tilt indicator from this ESP32 rapid-prototyping series." data-short="IMU tilt indicator" data-thumb="https://img.youtube.com/vi/yotXrTaVWc4/hqdefault.jpg" data-youtube="https://youtube.com/shorts/yotXrTaVWc4" aria-label="Play IMU Tilt Indicator demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                              <span class="project-demo-entry-thumb">
+                                <img src="https://img.youtube.com/vi/yotXrTaVWc4/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
+                                <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
+                              </span>
+                              <span class="project-demo-entry-body">
+                                <span class="project-demo-entry-title">IMU Tilt Indicator</span>
+                              </span>
+                            </button>
+                          </li>
+                          <li>
+                            <button type="button" class="project-demo-entry" data-demo-index="4" data-video-id="qv7h4sZgg34" data-title="Bridge-Crossing Robot" data-meta="Recording of the remotely controlled bridge-crossing robot from this ESP32 rapid-prototyping series." data-short="Bridge-crossing robot" data-thumb="https://img.youtube.com/vi/qv7h4sZgg34/hqdefault.jpg" data-youtube="https://youtube.com/shorts/qv7h4sZgg34" aria-label="Play Bridge-Crossing Robot demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                              <span class="project-demo-entry-thumb">
+                                <img src="https://img.youtube.com/vi/qv7h4sZgg34/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
+                                <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
+                              </span>
+                              <span class="project-demo-entry-body">
+                                <span class="project-demo-entry-title">Bridge-Crossing Robot</span>
+                              </span>
+                            </button>
+                          </li>
+                          <li>
+                            <button type="button" class="project-demo-entry" data-demo-index="5" data-video-id="2s0thynQ_xo" data-title="Musical Robotics Network" data-meta="Recording of the multi-node wireless musical robotics system from this ESP32 rapid-prototyping series." data-short="Musical robotics network" data-thumb="https://img.youtube.com/vi/2s0thynQ_xo/hqdefault.jpg" data-youtube="https://youtu.be/2s0thynQ_xo" aria-label="Play Musical Robotics Network demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                              <span class="project-demo-entry-thumb">
+                                <img src="https://img.youtube.com/vi/2s0thynQ_xo/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
+                                <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
+                              </span>
+                              <span class="project-demo-entry-body">
+                                <span class="project-demo-entry-title">Musical Robotics Network</span>
+                              </span>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -2704,6 +3030,20 @@
     <div class="project-lightbox-panel">
       <button type="button" class="project-lightbox-close" id="project-lightbox-close" aria-label="Close expanded figure">✕</button>
       <img id="project-lightbox-img" src="" alt="" />
+    </div>
+  </div>
+
+  <div id="demo-cinema" class="demo-cinema" role="dialog" aria-modal="true" aria-labelledby="demo-cinema-title" hidden>
+    <div class="demo-cinema-backdrop" id="demo-cinema-backdrop"></div>
+    <div class="demo-cinema-panel">
+      <button type="button" class="demo-cinema-close" id="demo-cinema-close" aria-label="Close video player">✕</button>
+      <div class="demo-cinema-head">
+        <p class="demo-cinema-series" id="demo-cinema-series">Embedded Sensing, Actuation, and Rapid Prototyping</p>
+        <h3 class="demo-cinema-title" id="demo-cinema-title">Demo</h3>
+      </div>
+      <div class="demo-cinema-player-wrap">
+        <iframe id="demo-cinema-player" title="Embedded prototype demo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
@@ -3401,6 +3741,63 @@
             card.classList.toggle("is-filtered-out", !categories.includes(filter));
           });
         });
+      });
+    })();
+
+    (function initDemoCinema() {
+      const gallery = document.getElementById("embedded-demo-gallery");
+      const cinema = document.getElementById("demo-cinema");
+      if (!gallery || !cinema) return;
+
+      const entries = Array.from(gallery.querySelectorAll(".project-demo-entry"));
+      const player = document.getElementById("demo-cinema-player");
+      const titleEl = document.getElementById("demo-cinema-title");
+      const closeBtn = document.getElementById("demo-cinema-close");
+      const backdrop = document.getElementById("demo-cinema-backdrop");
+
+      if (!entries.length || !player || !titleEl || !closeBtn || !backdrop) return;
+
+      let lastFocused = null;
+
+      function getDemoFromEntry(entry) {
+        return {
+          videoId: entry.getAttribute("data-video-id") || "",
+          title: entry.getAttribute("data-title") || "Demo",
+        };
+      }
+
+      function openCinema(entry) {
+        const demo = getDemoFromEntry(entry);
+        if (!demo.videoId) return;
+
+        lastFocused = document.activeElement;
+        player.src = `https://www.youtube-nocookie.com/embed/${demo.videoId}?autoplay=1`;
+        player.title = `${demo.title} demo video`;
+        titleEl.textContent = demo.title;
+        cinema.hidden = false;
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      }
+
+      function closeCinema() {
+        cinema.hidden = true;
+        player.src = "";
+        document.body.style.overflow = "";
+        if (lastFocused && typeof lastFocused.focus === "function") {
+          lastFocused.focus();
+        }
+      }
+
+      entries.forEach((entry) => {
+        entry.addEventListener("click", () => openCinema(entry));
+      });
+
+      closeBtn.addEventListener("click", closeCinema);
+      backdrop.addEventListener("click", closeCinema);
+
+      document.addEventListener("keydown", (e) => {
+        if (cinema.hidden) return;
+        if (e.key === "Escape") closeCinema();
       });
     })();
   </script>
