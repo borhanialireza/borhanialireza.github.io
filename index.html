@@ -1293,13 +1293,17 @@
       align-items: center;
       gap: 0.3rem;
       background: var(--bg-elevated);
+      transform-origin: center center;
+      transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
     }
 
     .pub-pill i {
       font-size: 0.75rem;
     }
 
-    .pub-pill:hover {
+    a.pub-pill:hover,
+    a.pub-pill:focus-visible {
+      transform: scale(1.08);
       border-color: var(--accent);
       color: var(--text-main);
     }
@@ -1590,20 +1594,176 @@
       border-top: 1px solid color-mix(in srgb, var(--border-subtle) 85%, transparent);
     }
 
-    #projects .projects-additional-heading {
-      margin: 0 0 0.65rem;
-      font-size: 0.78rem;
+    #projects .projects-additional-drawer {
+      border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border-subtle));
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--accent-soft) 18%, var(--bg-elevated));
+      overflow: hidden;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+
+    #projects .projects-additional-drawer:not([open]):hover {
+      border-color: color-mix(in srgb, var(--accent) 48%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 32%, var(--bg-elevated));
+    }
+
+    #projects .projects-additional-drawer-summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.62rem;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.68rem 0.9rem;
+      background: color-mix(in srgb, var(--accent-soft) 38%, var(--bg-elevated));
+      transition: background 0.18s ease;
+    }
+
+    #projects .projects-additional-drawer:not([open]) .projects-additional-drawer-summary:hover {
+      background: color-mix(in srgb, var(--accent-soft) 58%, var(--bg-elevated));
+    }
+
+    #projects .projects-additional-drawer[open] .projects-additional-drawer-summary {
+      background: color-mix(in srgb, var(--accent-soft) 28%, var(--bg-elevated));
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border-subtle));
+    }
+
+    #projects .projects-additional-drawer-summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+
+    #projects .projects-additional-drawer-chevron {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: 5px;
+      border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 55%, var(--bg-elevated));
+      color: var(--accent-dark);
+      transition: transform 0.2s ease, color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-drawer-chevron {
+      color: var(--accent);
+    }
+
+    #projects .projects-additional-drawer-summary:hover .projects-additional-drawer-chevron {
+      color: var(--accent-dark);
+      border-color: color-mix(in srgb, var(--accent) 50%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 75%, var(--bg-elevated));
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-drawer-summary:hover .projects-additional-drawer-chevron {
+      color: #dbeafe;
+    }
+
+    #projects .projects-additional-drawer-chevron svg {
+      display: block;
+      width: 0.72rem;
+      height: 0.72rem;
+    }
+
+    #projects .projects-additional-drawer[open] .projects-additional-drawer-chevron {
+      transform: rotate(180deg);
+      color: var(--accent-dark);
+      border-color: color-mix(in srgb, var(--accent) 40%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 62%, var(--bg-elevated));
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-drawer[open] .projects-additional-drawer-chevron {
+      color: var(--accent);
+    }
+
+    #projects .projects-additional-drawer-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    #projects .projects-additional-drawer-meta {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    #projects .projects-additional-count {
+      flex-shrink: 0;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--accent-dark);
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 50%, var(--bg-elevated));
+      transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-count {
+      color: var(--accent);
+    }
+
+    #projects .projects-additional-drawer-summary:hover .projects-additional-count {
+      color: color-mix(in srgb, var(--accent-dark) 82%, #0f172a);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 68%, var(--bg-elevated));
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-drawer-summary:hover .projects-additional-count {
+      color: #dbeafe;
+      border-color: color-mix(in srgb, var(--accent) 50%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 55%, var(--bg-elevated));
+    }
+
+    #projects .projects-additional-drawer[open] .projects-additional-count {
+      color: var(--accent-dark);
+      border-color: color-mix(in srgb, var(--accent) 36%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 55%, var(--bg-elevated));
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-drawer[open] .projects-additional-count {
+      color: var(--accent);
+    }
+
+    #projects .projects-additional-drawer-body {
+      margin-top: 0;
+      padding: 0.75rem 0.85rem 0.85rem;
+    }
+
+    #projects .projects-additional-heading {
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--accent-dark);
+      transition: color 0.18s ease;
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-heading {
+      color: var(--accent);
+    }
+
+    #projects .projects-additional-drawer-summary:hover .projects-additional-heading {
+      color: color-mix(in srgb, var(--accent-dark) 78%, #0f172a);
+    }
+
+    :root[data-theme="dark"] #projects .projects-additional-drawer-summary:hover .projects-additional-heading {
+      color: #dbeafe;
     }
 
     #projects .projects-additional-filters {
       display: flex;
       flex-wrap: wrap;
       gap: 0.35rem;
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.55rem;
     }
 
     #projects .projects-additional-filter {
@@ -1683,6 +1843,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0.45rem;
+      align-items: start;
     }
 
     #projects .project-demo-catalog > li {
@@ -1690,9 +1851,7 @@
     }
 
     #projects .project-demo-entry {
-      appearance: none;
       width: 100%;
-      height: 100%;
       display: flex;
       flex-direction: column;
       gap: 0.38rem;
@@ -1782,6 +1941,33 @@
       font-weight: 600;
       line-height: 1.3;
       color: var(--text-main);
+      min-width: 0;
+    }
+
+    #projects .project-demo-entry-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+    }
+
+    #projects .project-demo-entry-github {
+      flex-shrink: 0;
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transform-origin: center center;
+      transition: transform 0.18s ease, color 0.18s ease, text-decoration-color 0.18s ease;
+    }
+
+    #projects .project-demo-entry-github:hover,
+    #projects .project-demo-entry-github:focus-visible {
+      transform: scale(1.14);
+      color: var(--accent-dark);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 0.12em;
     }
 
     @media (max-width: 720px) {
@@ -1868,12 +2054,56 @@
       color: var(--accent);
     }
 
+    .demo-cinema-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
     .demo-cinema-title {
       margin: 0;
       font-size: 0.95rem;
       font-weight: 700;
       line-height: 1.38;
       color: var(--text-main);
+      min-width: 0;
+    }
+
+    .demo-cinema-github {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 0.38rem 0.78rem;
+      border-radius: 8px;
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border-subtle));
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      text-decoration: none;
+      transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .demo-cinema-github:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent-soft) 65%, var(--bg-elevated));
+    }
+
+    .demo-cinema-github:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    :root[data-theme="dark"] .demo-cinema-github {
+      color: var(--accent);
+    }
+
+    .demo-cinema-github[hidden] {
+      display: none;
     }
 
     .demo-cinema-player-wrap {
@@ -2754,7 +2984,17 @@
             </ol>
 
             <div class="projects-additional">
-              <h3 class="projects-additional-heading">Additional Projects</h3>
+              <details class="projects-additional-drawer">
+                <summary class="projects-additional-drawer-summary">
+                  <span class="projects-additional-drawer-chevron" aria-hidden="true">
+                    <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 4.25 6 7.75l3.5-3.5" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <h3 class="projects-additional-heading">Additional Projects</h3>
+                  <span class="projects-additional-drawer-meta">
+                    <span class="projects-additional-count">7 projects</span>
+                  </span>
+                </summary>
+                <div class="projects-additional-drawer-body">
               <div class="projects-additional-filters" role="tablist" aria-label="Filter additional projects">
                 <button type="button" class="projects-additional-filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
                 <button type="button" class="projects-additional-filter" data-filter="hpc" role="tab" aria-selected="false">HPC</button>
@@ -2767,15 +3007,15 @@
                 <li class="project-card" data-categories="hardware-design">
                   <div class="project-card-inner">
                     <div class="project-copy">
-                      <h3 class="project-title">FPGA-Oriented Sparse Matrix Storage and Dataflow Analysis</h3>
-                      <p class="project-summary">Studied sparse-matrix storage formats and compute dataflows for FPGA-style accelerators. The project compared CSR, COO, BCSR, and FPGA-friendly LIL-style layouts in terms of metadata overhead, storage efficiency, decompression cost, BRAM access patterns, and parallel-read feasibility. It also evaluated inner-product, outer-product, systolic-array, and adder-tree dataflows to analyze latency, memory traffic, energy consumption, operand reuse, and scheduling trade-offs in sparse-matrix computation.</p>
+                      <h3 class="project-title">FPGA-Oriented <a class="project-title" href="https://github.com/borhanialireza/systolic-array-matrix-multiplication-simulator" target="_blank" rel="noopener">Matrix Computation</a> and <a class="project-title" href="https://github.com/borhanialireza/fpga-sparse-matrix-analysis" target="_blank" rel="noopener">Sparse Storage Analysis</a></h3>
+                      <p class="project-summary">Developed Python-based simulation and analysis tools for FPGA-style matrix-computation accelerators. The project involved implementing cycle-accurate simulators for output-stationary and weight-stationary systolic-array matrix multiplication, modeling token movement, MAC activity, partial-sum propagation, latency, and array utilization. Also analyzed CSR, COO, BCSR, and FPGA-friendly LIL-style sparse layouts in terms of metadata overhead, storage efficiency, decompression cost, BRAM access patterns, and parallel-read feasibility.</p>
                     </div>
                   </div>
                 </li>
                 <li class="project-card" data-categories="hpc">
                   <div class="project-card-inner">
                     <div class="project-copy">
-                      <h3 class="project-title">Comparative Study of Parallel Programming Frameworks</h3>
+                      <a class="project-title" href="https://github.com/borhanialireza/umd-714-project" target="_blank" rel="noopener">Comparative Study of Parallel Programming Frameworks</a>
                       <p class="project-summary">Evaluated shared-memory and message-passing parallel programming frameworks on the Zaratan HPC cluster, comparing OpenMP, Intel TBB, C++ Parallel STL, OpenMPI, and Intel MPI across NAS Parallel Benchmarks and SPEC HPC workloads. The project involved porting selected benchmark kernels, running scalability experiments across thread counts and MPI-rank configurations, and using Intel VTune and HPCToolkit to analyze performance bottlenecks related to communication overhead, synchronization cost, NUMA effects, memory behavior, load balance, and framework-level runtime overhead.</p>
                     </div>
                   </div>
@@ -2783,7 +3023,7 @@
                 <li class="project-card" data-categories="hardware-design eda-vlsi">
                   <div class="project-card-inner">
                     <div class="project-copy">
-                      <h3 class="project-title">RTL-to-GDS Digital Design Flow</h3>
+                      <a class="project-title" href="https://github.com/borhanialireza/RTL-to-GDSII-Digital-Design-Flow" target="_blank" rel="noopener">RTL-to-GDSII Digital Design Flow</a>
                       <p class="project-summary">Implemented a complete RTL-to-layout flow for a 13K-cell arithmetic core using Synopsys Design Compiler and Cadence Encounter SoC. Starting from Verilog RTL, the design was synthesized with a TSMC 180nm standard-cell library, evaluated through area, timing, and power reports, and optimized under both minimum-area and target-frequency constraints. The synthesized netlist and constraints were then used for floorplanning, power routing, placement, clock routing, signal routing, filler-cell insertion, timing verification, DRC/connectivity checks, and final GDS generation.</p>
                     </div>
                   </div>
@@ -2791,7 +3031,7 @@
                 <li class="project-card" data-categories="architecture-memory">
                   <div class="project-card-inner">
                     <div class="project-copy">
-                      <h3 class="project-title">SRAM vs. STT-RAM Cache Energy Modeling</h3>
+                      <a class="project-title" href="https://github.com/borhanialireza/SRAM-vs-STT-RAM-Cache-Energy-Modeling" target="_blank" rel="noopener">SRAM vs. STT-RAM Cache Energy Modeling</a>
                       <p class="project-summary">Developed a simulation-based evaluation flow for comparing SRAM and STT-RAM L2 cache designs using gem5 and NVSim. PARSEC workloads were executed in gem5 full-system simulation with a modeled L1/L2 cache hierarchy to collect workload-specific L2 read/write access statistics. These access profiles were then combined with NVSim memory models to estimate read energy, write energy, and leakage power, enabling a workload-aware comparison of cache energy behavior across memory technologies.</p>
                     </div>
                   </div>
@@ -2807,7 +3047,7 @@
                 <li class="project-card" data-categories="eda-vlsi">
                   <div class="project-card-inner">
                     <div class="project-copy">
-                      <h3 class="project-title">Simulated Annealing for VLSI Standard-Cell Placement</h3>
+                      <a class="project-title" href="https://github.com/borhanialireza/Simulated-Annealing-for-VLSI-Standard-Cell-Placement" target="_blank" rel="noopener">Simulated Annealing for VLSI Standard-Cell Placement</a>
                       <p class="project-summary">Implemented a simulated-annealing-based placement algorithm for standard-cell VLSI physical design by extending a C/C++ placement framework and its internal design database. The project optimized cell locations using wirelength-aware cost evaluation while preserving row-based, overlap-free layout constraints. The implementation included benchmark parsing, cell-move generation, cost estimation based on half-perimeter wirelength, iterative placement refinement, and graphical validation of the final layout.</p>
                     </div>
                   </div>
@@ -2821,70 +3061,88 @@
                         <p class="project-demos-lead">Demo videos:</p>
                         <ul class="project-demo-catalog">
                           <li>
-                            <button type="button" class="project-demo-entry" data-demo-index="0" data-video-id="gtRkZIT6Jrw" data-title="Morse Code Signaling" data-meta="Recording of the Morse-code LED signaling build from this ESP32 rapid-prototyping series." data-short="Morse-code LED signaling" data-thumb="https://img.youtube.com/vi/gtRkZIT6Jrw/hqdefault.jpg" data-youtube="https://youtube.com/shorts/gtRkZIT6Jrw" aria-label="Play Morse Code Signaling demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                            <div class="project-demo-entry" data-demo-index="0" data-video-id="gtRkZIT6Jrw" data-title="Morse Code Signaling" data-meta="Recording of the Morse-code LED signaling build from this ESP32 rapid-prototyping series." data-short="Morse-code LED signaling" data-thumb="https://img.youtube.com/vi/gtRkZIT6Jrw/hqdefault.jpg" data-youtube="https://youtube.com/shorts/gtRkZIT6Jrw" role="button" tabindex="0" aria-label="Play Morse Code Signaling demo from Embedded Sensing, Actuation, and Rapid Prototyping">
                               <span class="project-demo-entry-thumb">
                                 <img src="https://img.youtube.com/vi/gtRkZIT6Jrw/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
                                 <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
                               </span>
                               <span class="project-demo-entry-body">
-                                <span class="project-demo-entry-title">Morse Code Signaling</span>
+                                <span class="project-demo-entry-title-row">
+                                  <span class="project-demo-entry-title">Morse Code Signaling</span>
+                                  <a class="project-demo-entry-github" href="https://github.com/borhanialireza/Morse-Code-Signaling" target="_blank" rel="noopener" aria-label="GitHub repository for Morse Code Signaling">GitHub</a>
+                                </span>
                               </span>
-                            </button>
+                            </div>
                           </li>
                           <li>
-                            <button type="button" class="project-demo-entry" data-demo-index="1" data-video-id="3oZRY-yPwxA" data-title="Light-Sensor Audio Game" data-meta="Recording of the light-sensor-based audio feedback game from this ESP32 rapid-prototyping series." data-short="Light-sensor audio game" data-thumb="https://img.youtube.com/vi/3oZRY-yPwxA/hqdefault.jpg" data-youtube="https://youtube.com/shorts/3oZRY-yPwxA" aria-label="Play Light-Sensor Audio Game demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                            <div class="project-demo-entry" data-demo-index="1" data-video-id="3oZRY-yPwxA" data-title="Light-Sensor Audio Game" data-meta="Recording of the light-sensor-based audio feedback game from this ESP32 rapid-prototyping series." data-short="Light-sensor audio game" data-thumb="https://img.youtube.com/vi/3oZRY-yPwxA/hqdefault.jpg" data-youtube="https://youtube.com/shorts/3oZRY-yPwxA" role="button" tabindex="0" aria-label="Play Light-Sensor Audio Game demo from Embedded Sensing, Actuation, and Rapid Prototyping">
                               <span class="project-demo-entry-thumb">
                                 <img src="https://img.youtube.com/vi/3oZRY-yPwxA/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
                                 <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
                               </span>
                               <span class="project-demo-entry-body">
-                                <span class="project-demo-entry-title">Light-Sensor Audio Game</span>
+                                <span class="project-demo-entry-title-row">
+                                  <span class="project-demo-entry-title">Light-Sensor Audio Game</span>
+                                  <a class="project-demo-entry-github" href="https://github.com/borhanialireza/Light-Sensor-Audio-Game" target="_blank" rel="noopener" aria-label="GitHub repository for Light-Sensor Audio Game">GitHub</a>
+                                </span>
                               </span>
-                            </button>
+                            </div>
                           </li>
                           <li>
-                            <button type="button" class="project-demo-entry" data-demo-index="2" data-video-id="UCZVEEKQHrQ" data-title="Ultrasonic Radar Platform" data-meta="Recording of the 3D-printed ultrasonic radar platform with servo-driven scanning from this ESP32 rapid-prototyping series." data-short="Ultrasonic radar platform" data-thumb="https://img.youtube.com/vi/UCZVEEKQHrQ/hqdefault.jpg" data-youtube="https://youtube.com/shorts/UCZVEEKQHrQ" aria-label="Play Ultrasonic Radar Platform demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                            <div class="project-demo-entry" data-demo-index="2" data-video-id="UCZVEEKQHrQ" data-title="Ultrasonic Radar Platform" data-meta="Recording of the 3D-printed ultrasonic radar platform with servo-driven scanning from this ESP32 rapid-prototyping series." data-short="Ultrasonic radar platform" data-thumb="https://img.youtube.com/vi/UCZVEEKQHrQ/hqdefault.jpg" data-youtube="https://youtube.com/shorts/UCZVEEKQHrQ" role="button" tabindex="0" aria-label="Play Ultrasonic Radar Platform demo from Embedded Sensing, Actuation, and Rapid Prototyping">
                               <span class="project-demo-entry-thumb">
                                 <img src="https://img.youtube.com/vi/UCZVEEKQHrQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
                                 <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
                               </span>
                               <span class="project-demo-entry-body">
-                                <span class="project-demo-entry-title">Ultrasonic Radar Platform</span>
+                                <span class="project-demo-entry-title-row">
+                                  <span class="project-demo-entry-title">Ultrasonic Radar Platform</span>
+                                  <a class="project-demo-entry-github" href="https://github.com/borhanialireza/Ultrasonic-Radar-Platform" target="_blank" rel="noopener" aria-label="GitHub repository for Ultrasonic Radar Platform">GitHub</a>
+                                </span>
                               </span>
-                            </button>
+                            </div>
                           </li>
                           <li>
-                            <button type="button" class="project-demo-entry" data-demo-index="3" data-video-id="yotXrTaVWc4" data-title="IMU Tilt Indicator" data-meta="Recording of the IMU-based LED tilt indicator from this ESP32 rapid-prototyping series." data-short="IMU tilt indicator" data-thumb="https://img.youtube.com/vi/yotXrTaVWc4/hqdefault.jpg" data-youtube="https://youtube.com/shorts/yotXrTaVWc4" aria-label="Play IMU Tilt Indicator demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                            <div class="project-demo-entry" data-demo-index="3" data-video-id="yotXrTaVWc4" data-title="IMU Tilt Indicator" data-meta="Recording of the IMU-based LED tilt indicator from this ESP32 rapid-prototyping series." data-short="IMU tilt indicator" data-thumb="https://img.youtube.com/vi/yotXrTaVWc4/hqdefault.jpg" data-youtube="https://youtube.com/shorts/yotXrTaVWc4" role="button" tabindex="0" aria-label="Play IMU Tilt Indicator demo from Embedded Sensing, Actuation, and Rapid Prototyping">
                               <span class="project-demo-entry-thumb">
                                 <img src="https://img.youtube.com/vi/yotXrTaVWc4/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
                                 <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
                               </span>
                               <span class="project-demo-entry-body">
-                                <span class="project-demo-entry-title">IMU Tilt Indicator</span>
+                                <span class="project-demo-entry-title-row">
+                                  <span class="project-demo-entry-title">IMU Tilt Indicator</span>
+                                  <a class="project-demo-entry-github" href="https://github.com/borhanialireza/IMU-Tilt-Indicator" target="_blank" rel="noopener" aria-label="GitHub repository for IMU Tilt Indicator">GitHub</a>
+                                </span>
                               </span>
-                            </button>
+                            </div>
                           </li>
                           <li>
-                            <button type="button" class="project-demo-entry" data-demo-index="4" data-video-id="qv7h4sZgg34" data-title="Bridge-Crossing Robot" data-meta="Recording of the remotely controlled bridge-crossing robot from this ESP32 rapid-prototyping series." data-short="Bridge-crossing robot" data-thumb="https://img.youtube.com/vi/qv7h4sZgg34/hqdefault.jpg" data-youtube="https://youtube.com/shorts/qv7h4sZgg34" aria-label="Play Bridge-Crossing Robot demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                            <div class="project-demo-entry" data-demo-index="4" data-video-id="qv7h4sZgg34" data-title="Bridge-Crossing Robot" data-meta="Recording of the remotely controlled bridge-crossing robot from this ESP32 rapid-prototyping series." data-short="Bridge-crossing robot" data-thumb="https://img.youtube.com/vi/qv7h4sZgg34/hqdefault.jpg" data-youtube="https://youtube.com/shorts/qv7h4sZgg34" role="button" tabindex="0" aria-label="Play Bridge-Crossing Robot demo from Embedded Sensing, Actuation, and Rapid Prototyping">
                               <span class="project-demo-entry-thumb">
                                 <img src="https://img.youtube.com/vi/qv7h4sZgg34/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
                                 <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
                               </span>
                               <span class="project-demo-entry-body">
-                                <span class="project-demo-entry-title">Bridge-Crossing Robot</span>
+                                <span class="project-demo-entry-title-row">
+                                  <span class="project-demo-entry-title">Bridge-Crossing Robot</span>
+                                  <a class="project-demo-entry-github" href="https://github.com/borhanialireza/Bridge-Crossing-Robot" target="_blank" rel="noopener" aria-label="GitHub repository for Bridge-Crossing Robot">GitHub</a>
+                                </span>
                               </span>
-                            </button>
+                            </div>
                           </li>
                           <li>
-                            <button type="button" class="project-demo-entry" data-demo-index="5" data-video-id="2s0thynQ_xo" data-title="Musical Robotics Network" data-meta="Recording of the multi-node wireless musical robotics system from this ESP32 rapid-prototyping series." data-short="Musical robotics network" data-thumb="https://img.youtube.com/vi/2s0thynQ_xo/hqdefault.jpg" data-youtube="https://youtu.be/2s0thynQ_xo" aria-label="Play Musical Robotics Network demo from Embedded Sensing, Actuation, and Rapid Prototyping">
+                            <div class="project-demo-entry" data-demo-index="5" data-video-id="2s0thynQ_xo" data-title="Musical Robotics Network" data-meta="Recording of the multi-node wireless musical robotics system from this ESP32 rapid-prototyping series." data-short="Musical robotics network" data-thumb="https://img.youtube.com/vi/2s0thynQ_xo/hqdefault.jpg" data-youtube="https://youtu.be/2s0thynQ_xo" role="button" tabindex="0" aria-label="Play Musical Robotics Network demo from Embedded Sensing, Actuation, and Rapid Prototyping">
                               <span class="project-demo-entry-thumb">
                                 <img src="https://img.youtube.com/vi/2s0thynQ_xo/hqdefault.jpg" alt="" loading="lazy" decoding="async" />
                                 <span class="project-demo-entry-play" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6c0 .5.55.8 1 .55l7-4.8c.45-.3.45-.95 0-1.25l-7-4.8c-.45-.3-1 .05-1 .7Z"/></svg></span>
                               </span>
                               <span class="project-demo-entry-body">
-                                <span class="project-demo-entry-title">Musical Robotics Network</span>
+                                <span class="project-demo-entry-title-row">
+                                  <span class="project-demo-entry-title">Musical Robotics Network</span>
+                                  <a class="project-demo-entry-github" href="https://github.com/borhanialireza/my-singing-robots" target="_blank" rel="noopener" aria-label="GitHub repository for Musical Robotics Network">GitHub</a>
+                                </span>
                               </span>
-                            </button>
+                            </div>
                           </li>
                         </ul>
                       </div>
@@ -2892,6 +3150,8 @@
                   </div>
                 </li>
               </ol>
+                </div>
+              </details>
             </div>
           </div>
         </section>
@@ -3039,7 +3299,10 @@
       <button type="button" class="demo-cinema-close" id="demo-cinema-close" aria-label="Close video player">✕</button>
       <div class="demo-cinema-head">
         <p class="demo-cinema-series" id="demo-cinema-series">Embedded Sensing, Actuation, and Rapid Prototyping</p>
-        <h3 class="demo-cinema-title" id="demo-cinema-title">Demo</h3>
+        <div class="demo-cinema-title-row">
+          <h3 class="demo-cinema-title" id="demo-cinema-title">Demo</h3>
+          <a class="demo-cinema-github" id="demo-cinema-github" href="#" target="_blank" rel="noopener" hidden>GitHub</a>
+        </div>
       </div>
       <div class="demo-cinema-player-wrap">
         <iframe id="demo-cinema-player" title="Embedded prototype demo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -3719,6 +3982,13 @@
 
       const filters = section.querySelectorAll(".projects-additional-filter");
       const cards = section.querySelectorAll(".project-showcase-additional .project-card");
+      const countEl = section.querySelector(".projects-additional-count");
+
+      function updateVisibleCount() {
+        if (!countEl) return;
+        const visible = Array.from(cards).filter((card) => !card.classList.contains("is-filtered-out"));
+        countEl.textContent = `${visible.length} project${visible.length === 1 ? "" : "s"}`;
+      }
 
       filters.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -3740,8 +4010,12 @@
             const categories = (card.getAttribute("data-categories") || "").split(/\s+/);
             card.classList.toggle("is-filtered-out", !categories.includes(filter));
           });
+
+          updateVisibleCount();
         });
       });
+
+      updateVisibleCount();
     })();
 
     (function initDemoCinema() {
@@ -3752,17 +4026,21 @@
       const entries = Array.from(gallery.querySelectorAll(".project-demo-entry"));
       const player = document.getElementById("demo-cinema-player");
       const titleEl = document.getElementById("demo-cinema-title");
+      const githubEl = document.getElementById("demo-cinema-github");
       const closeBtn = document.getElementById("demo-cinema-close");
       const backdrop = document.getElementById("demo-cinema-backdrop");
 
-      if (!entries.length || !player || !titleEl || !closeBtn || !backdrop) return;
+      if (!entries.length || !player || !titleEl || !githubEl || !closeBtn || !backdrop) return;
 
       let lastFocused = null;
 
       function getDemoFromEntry(entry) {
+        const githubLink = entry.querySelector(".project-demo-entry-github");
         return {
           videoId: entry.getAttribute("data-video-id") || "",
           title: entry.getAttribute("data-title") || "Demo",
+          github: githubLink ? githubLink.getAttribute("href") || "" : "",
+          githubLabel: githubLink ? githubLink.getAttribute("aria-label") || "GitHub repository" : "",
         };
       }
 
@@ -3774,6 +4052,14 @@
         player.src = `https://www.youtube-nocookie.com/embed/${demo.videoId}?autoplay=1`;
         player.title = `${demo.title} demo video`;
         titleEl.textContent = demo.title;
+        if (demo.github) {
+          githubEl.href = demo.github;
+          githubEl.setAttribute("aria-label", demo.githubLabel);
+          githubEl.hidden = false;
+        } else {
+          githubEl.hidden = true;
+          githubEl.removeAttribute("href");
+        }
         cinema.hidden = false;
         document.body.style.overflow = "hidden";
         closeBtn.focus();
@@ -3789,7 +4075,10 @@
       }
 
       entries.forEach((entry) => {
-        entry.addEventListener("click", () => openCinema(entry));
+        entry.addEventListener("click", (e) => {
+          if (e.target.closest(".project-demo-entry-github")) return;
+          openCinema(entry);
+        });
       });
 
       closeBtn.addEventListener("click", closeCinema);
