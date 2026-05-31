@@ -1196,6 +1196,107 @@
       color: color-mix(in srgb, var(--accent) 78%, var(--text-main));
     }
 
+    /* Awards (right sidebar) */
+
+    #awards .card-awards {
+      padding: 0.9rem 0.95rem 0.85rem;
+    }
+
+    #awards .card-title {
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    #awards .awards-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.62rem;
+    }
+
+    #awards .awards-item {
+      padding: 0.1rem 0 0.55rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 85%, transparent);
+    }
+
+    #awards .awards-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    #awards .awards-title {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    #awards .awards-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    #awards .awards-title a:hover {
+      color: var(--accent);
+    }
+
+    #awards .awards-org {
+      margin: 0.18rem 0 0;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    /* Professional service (right sidebar) */
+
+    #service .card-service {
+      padding: 0.9rem 0.95rem 0.85rem;
+    }
+
+    #service .card-title {
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    #service .service-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    #service .service-item {
+      padding: 0.05rem 0 0.55rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 85%, transparent);
+    }
+
+    #service .service-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    #service .service-role {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+
+    #service .service-role em {
+      font-style: normal;
+      font-weight: 600;
+      color: color-mix(in srgb, var(--accent-dark) 70%, var(--text-main));
+    }
+
+    :root[data-theme="dark"] #service .service-role em {
+      color: color-mix(in srgb, var(--accent) 82%, var(--text-main));
+    }
+
     /* =============== Publications =============== */
 
     .pub-note {
@@ -3711,6 +3812,33 @@
           </div>
         </section>
 
+        <section class="section" id="awards">
+          <div class="card card-awards">
+            <h3 class="card-title">Awards &amp; Honors</h3>
+            <ul class="awards-list">
+              <li class="awards-item">
+                <p class="awards-title"><a href="rank.JPG" class="awards-proof-link" data-full-src="rank.JPG" aria-label="View official certificate for M.Sc. rank">Ranked 1st in the M.Sc. Computer Engineering cohort, 2021</a></p>
+                <p class="awards-org">Amirkabir University of Technology, Tehran, Iran</p>
+              </li>
+              <li class="awards-item">
+                <p class="awards-title">Admitted to the M.Sc. program through the Exceptional Talents track, 2018</p>
+                <p class="awards-org">Amirkabir University of Technology, Tehran, Iran</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="service">
+          <div class="card card-service">
+            <h3 class="card-title">Professional Service</h3>
+            <ul class="service-list">
+              <li class="service-item">
+                <p class="service-role">Reviewer, <em>IEEE Micro</em></p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
         <section class="section" id="skills">
           <div class="card card-skills">
             <h3 class="card-title">Skills</h3>
@@ -4407,9 +4535,15 @@
         document.body.style.overflow = "";
       }
 
-      document.querySelectorAll(".project-visual-open").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const src = btn.getAttribute("data-full-src");
+      document.querySelectorAll(".project-visual-open, .awards-proof-link").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const src = btn.getAttribute("data-full-src") || btn.getAttribute("href");
+          if (!src) return;
+          if (btn.classList.contains("awards-proof-link")) {
+            e.preventDefault();
+            openLightbox(src, btn.getAttribute("aria-label") || btn.textContent.trim());
+            return;
+          }
           const img = btn.querySelector("img");
           if (src) openLightbox(src, img ? img.alt : "");
         });
