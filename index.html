@@ -2320,12 +2320,309 @@
       background: color-mix(in srgb, var(--bg-elevated) 92%, var(--accent-soft));
     }
 
-    #teaching .card-title:not(.section-title) {
-      margin-top: 1.1rem;
+    #teaching .section-title {
+      margin-bottom: 0.85rem;
     }
 
-    #teaching .card-title:not(.section-title):first-of-type {
-      margin-top: 0;
+    #teaching .experience-stack {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    #teaching .experience-panel {
+      border: 1px solid color-mix(in srgb, var(--border-subtle) 92%, transparent);
+      border-radius: 11px;
+      background: var(--bg-elevated);
+      padding: 0.75rem 0.85rem 0.85rem 0.55rem;
+      overflow: hidden;
+    }
+
+    #teaching .experience-panel-head {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.72rem;
+      padding-bottom: 0.48rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 88%, transparent);
+    }
+
+    #teaching .experience-panel-tag {
+      margin: 0;
+      flex-shrink: 0;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: color-mix(in srgb, var(--text-main) 82%, var(--text-muted));
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: none;
+    }
+
+    :root[data-theme="dark"] #teaching .experience-panel-tag {
+      color: color-mix(in srgb, var(--text-main) 88%, var(--text-muted));
+    }
+
+    #teaching .experience-timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #teaching .experience-item {
+      padding: 0 0 0.9rem;
+    }
+
+    #teaching .experience-item:has(.experience-affiliations) {
+      padding-bottom: 0.25rem;
+    }
+
+    #teaching .experience-item + .experience-item .experience-content {
+      padding-top: 0.32rem;
+    }
+
+    #teaching .experience-item:last-child {
+      padding-bottom: 0;
+    }
+
+    #teaching .experience-content-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.3rem 0.65rem;
+      margin-bottom: 0.22rem;
+    }
+
+    #teaching .experience-when {
+      margin: 0;
+      font-size: 0.67rem;
+      font-weight: 600;
+      line-height: 1.35;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.01em;
+      color: color-mix(in srgb, var(--accent-dark) 75%, var(--text-muted));
+      white-space: nowrap;
+      padding: 0.1rem 0.38rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border-subtle));
+      background: color-mix(in srgb, var(--accent-soft) 35%, var(--bg-elevated));
+    }
+
+    :root[data-theme="dark"] #teaching .experience-when {
+      color: color-mix(in srgb, var(--accent) 82%, var(--text-muted));
+    }
+
+    #teaching .experience-content {
+      min-width: 0;
+      padding: 0.48rem 0.52rem 0.5rem 0.42rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background 0.18s ease, border-color 0.18s ease;
+    }
+
+    #teaching .experience-content:has(.experience-affiliations) {
+      padding-bottom: 0.1rem;
+    }
+
+    #teaching .experience-item:hover .experience-content:not(:has(.experience-affiliations)) {
+      background: color-mix(in srgb, var(--bg-elevated) 82%, var(--accent-soft));
+      border-color: color-mix(in srgb, var(--accent) 16%, transparent);
+    }
+
+    #teaching .experience-role {
+      margin: 0;
+      font-size: 0.93rem;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      min-width: 0;
+    }
+
+    #teaching .experience-org {
+      display: flex;
+      flex-direction: column;
+      gap: 0.06rem;
+      margin: 0 0 0.38rem;
+    }
+
+    #teaching .experience-org-line1 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: color-mix(in srgb, var(--accent-dark) 72%, var(--text-main));
+    }
+
+    #teaching .experience-org-line1 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    #teaching .experience-org-line1 a:hover {
+      color: var(--accent);
+    }
+
+    #teaching .experience-org-level {
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    :root[data-theme="dark"] #teaching .experience-org-line1 {
+      color: color-mix(in srgb, var(--accent) 78%, var(--text-main));
+    }
+
+    #teaching .experience-org-line2 {
+      font-size: 0.77rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    #teaching .experience-summary {
+      margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.58;
+      color: var(--text-muted);
+    }
+
+    #teaching .experience-affiliations {
+      list-style: none;
+      margin: 0.42rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    #teaching .experience-affiliation {
+      padding: 0.5rem 0.45rem 0.5rem 0.38rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background 0.18s ease, border-color 0.18s ease;
+    }
+
+    #teaching .experience-affiliation:hover {
+      background: color-mix(in srgb, var(--bg-elevated) 82%, var(--accent-soft));
+      border-color: color-mix(in srgb, var(--accent) 16%, transparent);
+    }
+
+    #teaching .experience-affiliation-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.3rem 0.65rem;
+      margin-bottom: 0.22rem;
+    }
+
+    #teaching .experience-affiliation .experience-org {
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+    }
+
+    #teaching .experience-content-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.35rem;
+    }
+
+    #teaching .experience-link:not(.experience-link--demo) {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.58rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      text-decoration: none;
+      background: var(--bg-elevated);
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+    }
+
+    #teaching .experience-link:not(.experience-link--demo):hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    #teaching a.experience-link.experience-link--demo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.26rem;
+      padding: 0.1rem 0.38rem 0.1rem 0.32rem;
+      border-radius: 999px;
+      font-size: 0.67rem;
+      font-weight: 500;
+      line-height: 1.35;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      font-family: inherit;
+      cursor: pointer;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      background: #f7faf8;
+      transform-origin: center center;
+      transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+    }
+
+    #teaching a.experience-link.experience-link--demo::before {
+      content: "";
+      flex-shrink: 0;
+      width: 0;
+      height: 0;
+      border-top: 0.22rem solid transparent;
+      border-bottom: 0.22rem solid transparent;
+      border-left: 0.34rem solid currentColor;
+      opacity: 0.85;
+    }
+
+    #teaching a.experience-link.experience-link--demo:hover {
+      transform: scale(1.08);
+      color: #166534;
+      border-color: #86efac;
+      background: #f0fdf4;
+    }
+
+    :root[data-theme="dark"] #teaching a.experience-link.experience-link--demo {
+      color: #bbf7d0;
+      border-color: #15803d;
+      background: #052e1a;
+    }
+
+    :root[data-theme="dark"] #teaching a.experience-link.experience-link--demo:hover {
+      color: #bbf7d0;
+      border-color: #16a34a;
+      background: #064e3b;
+    }
+
+    @media (max-width: 720px) {
+      #teaching .experience-item {
+        padding-bottom: 0.85rem;
+      }
+
+      #teaching .experience-content {
+        padding: 0.42rem 0.45rem 0.45rem 0.38rem;
+      }
+
+      #teaching .experience-content-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.22rem;
+      }
+
+      #teaching .experience-content-meta {
+        justify-content: flex-start;
+      }
+
+      #teaching .experience-affiliation-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.22rem;
+      }
     }
 
     :focus-visible {
@@ -3156,26 +3453,177 @@
           </div>
         </section>
 
-        <!-- Teaching & Experience -->
+        <!-- Experience -->
         <section class="section" id="teaching">
           <div class="card">
-            <h2 class="section-title">Teaching &amp; Experience</h2>
+            <h2 class="section-title">Experience</h2>
 
-            <div class="card-title">Research Assistant · University of Maryland</div>
-            <div class="card-meta">Computer Architecture and Systems Lab</div>
-            <ul class="nice-list">
-              <li>Research on resilient and efficient smart-home IoT systems, including the Tureis framework.</li>
-              <li>Focus on Transformer-based modeling, sensor encodings, and real-time edge deployment.</li>
-            </ul>
+            <div class="experience-stack">
+              <section class="experience-panel" aria-label="Research experience">
+                <ol class="experience-timeline">
+                  <li class="experience-item">
+                    <div class="experience-content">
+                      <h4 class="experience-role">Research Assistant</h4>
+                      <ul class="experience-affiliations">
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1"><a href="https://casl.cs.umd.edu/" target="_blank" rel="noopener">Computer Architecture and Systems Lab (CASL)</a></span>
+                              <span class="experience-org-line2">University of Maryland, College Park</span>
+                            </p>
+                            <time class="experience-when" datetime="2025-01">2025 – Present</time>
+                          </div>
+                          <p class="experience-summary">Conducting research on resilient IoT sensing systems, with a focus on self-supervised Transformer models for smart-home sensor failure detection, localization, and edge-efficient inference.</p>
+                        </li>
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">Embedded Systems Research Laboratory (ESRLab)</span>
+                              <span class="experience-org-line2">Sharif University of Technology</span>
+                            </p>
+                            <time class="experience-when" datetime="2021-09/2022-09">2021 – 2022</time>
+                          </div>
+                          <p class="experience-summary">Studied energy-efficient and aging-aware memory hierarchies for multicore systems. Developed a simulation-based evaluation flow using gem5 and NVSim to compare SRAM and STT-RAM cache energy behavior under PARSEC workloads.</p>
+                        </li>
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">Design and Analysis of Dependable Systems (DADS) Laboratory</span>
+                              <span class="experience-org-line2">Amirkabir University of Technology</span>
+                            </p>
+                            <time class="experience-when" datetime="2018-02/2022-11">2018 – 2022</time>
+                          </div>
+                          <p class="experience-summary">Worked on dependable IoT systems and efficient ML hardware. Contributed to context-aware sensor failure detection in smart homes and FPGA-based acceleration of neural-network training.</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="experience-item">
+                    <div class="experience-content">
+                      <div class="experience-content-head">
+                        <h4 class="experience-role">Research Intern</h4>
+                        <div class="experience-content-meta">
+                          <a class="experience-link experience-link--demo experience-demo-trigger" href="https://youtu.be/_MQaIuDRi_4" data-video-id="_MQaIuDRi_4" aria-label="Play demo">Demo</a>
+                          <time class="experience-when" datetime="2017-06/2017-09">2017</time>
+                        </div>
+                      </div>
+                      <p class="experience-org">
+                        <span class="experience-org-line1">Embedded Systems Research Laboratory (ESRLab)</span>
+                        <span class="experience-org-line2">Sharif University of Technology</span>
+                      </p>
+                      <p class="experience-summary">Developed an Arduino-based IoT environmental monitoring system with Wi-Fi-enabled distributed sensor nodes, and implemented fault-tolerant redundancy mechanisms, including Triple Modular Redundancy (TMR) and hot standby, to improve system reliability while reducing energy overhead.</p>
+                    </div>
+                  </li>
+                </ol>
+              </section>
 
-            <div style="height: 0.9rem;"></div>
+              <section class="experience-panel" aria-label="Teaching experience">
+                <ol class="experience-timeline">
+                  <li class="experience-item">
+                    <div class="experience-content">
+                      <h4 class="experience-role">Teaching Assistant</h4>
+                      <ul class="experience-affiliations">
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">Algorithms</span>
+                              <span class="experience-org-line2">University of Maryland, College Park</span>
+                            </p>
+                            <time class="experience-when" datetime="2025-01/2026-05">2025 – 2026</time>
+                          </div>
+                          <p class="experience-summary">Graded homework and exams, held office hours, and proctored exams.</p>
+                        </li>
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">Reliable Systems Design<span class="experience-org-level"> · Graduate course</span></span>
+                              <span class="experience-org-line2">Amirkabir University of Technology</span>
+                            </p>
+                            <time class="experience-when" datetime="2020-09">2020</time>
+                          </div>
+                          <p class="experience-summary">Designed and graded graduate homework and projects.</p>
+                        </li>
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">VLSI Design Algorithms<span class="experience-org-level"> · Graduate course</span></span>
+                              <span class="experience-org-line2">Amirkabir University of Technology</span>
+                            </p>
+                            <time class="experience-when" datetime="2020-03">2020</time>
+                          </div>
+                          <p class="experience-summary">Designed and graded graduate homework and projects.</p>
+                        </li>
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">Design of Algorithms</span>
+                              <span class="experience-org-line2">Shahed University</span>
+                            </p>
+                            <time class="experience-when" datetime="2017-09">2017</time>
+                          </div>
+                          <p class="experience-summary">Led instructional sessions and designed and graded homework and exams.</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="experience-item">
+                    <div class="experience-content">
+                      <h4 class="experience-role">Laboratory Instructor</h4>
+                      <ul class="experience-affiliations">
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">Operating Systems Laboratory</span>
+                              <span class="experience-org-line2">Amirkabir University of Technology</span>
+                            </p>
+                            <time class="experience-when" datetime="2020-09/2021-03">2020 – 2021</time>
+                          </div>
+                          <p class="experience-summary">Instructed students in Linux process management, CPU scheduling, multithreading, synchronization, and inter-process communication.</p>
+                        </li>
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">Logic Circuits Laboratory</span>
+                              <span class="experience-org-line2">Amirkabir University of Technology</span>
+                            </p>
+                            <time class="experience-when" datetime="2019-09/2020-06">2019 – 2020</time>
+                          </div>
+                          <p class="experience-summary">Instructed students in combinational and sequential logic design, Verilog HDL programming, simulation, and FPGA implementation.</p>
+                        </li>
+                        <li class="experience-affiliation">
+                          <div class="experience-affiliation-head">
+                            <p class="experience-org">
+                              <span class="experience-org-line1">Computer Architecture Laboratory</span>
+                              <span class="experience-org-line2">Amirkabir University of Technology</span>
+                            </p>
+                            <time class="experience-when" datetime="2019-09/2020-06">2019 – 2020</time>
+                          </div>
+                          <p class="experience-summary">Instructed students in datapath and control-unit design, VHDL-based processor implementation, simulation, and FPGA prototyping.</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ol>
+              </section>
 
-            <div class="card-title">Teaching Assistant · CMSC 351 (Algorithms)</div>
-            <div class="card-meta">University of Maryland, College Park</div>
-            <ul class="nice-list">
-              <li>Lead discussion sections, hold office hours, and help design/grade exams and assignments.</li>
-              <li>Assist students with algorithm design, complexity analysis, and problem-solving skills.</li>
-            </ul>
+              <section class="experience-panel" aria-label="Professional experience">
+                <ol class="experience-timeline">
+                  <li class="experience-item">
+                    <div class="experience-content">
+                      <div class="experience-content-head">
+                        <h4 class="experience-role">Embedded Systems Developer</h4>
+                        <time class="experience-when" datetime="2019-07/2020-03">2019 – 2020</time>
+                      </div>
+                      <p class="experience-org">
+                        <span class="experience-org-line1">LUXIN Smart Home</span>
+                        <span class="experience-org-line2">Tehran, Iran</span>
+                      </p>
+                      <p class="experience-summary">Developed embedded software features for smart-home systems, including air-conditioner control, smart blinds, and current-consumption monitoring for connected devices.</p>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+            </div>
           </div>
         </section>
 
@@ -4019,18 +4467,22 @@
     })();
 
     (function initDemoCinema() {
-      const gallery = document.getElementById("embedded-demo-gallery");
       const cinema = document.getElementById("demo-cinema");
-      if (!gallery || !cinema) return;
+      if (!cinema) return;
 
-      const entries = Array.from(gallery.querySelectorAll(".project-demo-entry"));
+      const gallery = document.getElementById("embedded-demo-gallery");
+      const entries = gallery ? Array.from(gallery.querySelectorAll(".project-demo-entry")) : [];
+      const experienceTriggers = Array.from(document.querySelectorAll(".experience-demo-trigger"));
       const player = document.getElementById("demo-cinema-player");
       const titleEl = document.getElementById("demo-cinema-title");
+      const seriesEl = document.getElementById("demo-cinema-series");
+      const headEl = document.querySelector(".demo-cinema-head");
       const githubEl = document.getElementById("demo-cinema-github");
       const closeBtn = document.getElementById("demo-cinema-close");
       const backdrop = document.getElementById("demo-cinema-backdrop");
 
-      if (!entries.length || !player || !titleEl || !githubEl || !closeBtn || !backdrop) return;
+      if (!player || !titleEl || !githubEl || !closeBtn || !backdrop) return;
+      if (!entries.length && !experienceTriggers.length) return;
 
       let lastFocused = null;
 
@@ -4039,27 +4491,50 @@
         return {
           videoId: entry.getAttribute("data-video-id") || "",
           title: entry.getAttribute("data-title") || "Demo",
+          series: entry.closest(".project-card")?.querySelector(".project-title")?.textContent?.trim() || "Embedded Sensing, Actuation, and Rapid Prototyping",
           github: githubLink ? githubLink.getAttribute("href") || "" : "",
           githubLabel: githubLink ? githubLink.getAttribute("aria-label") || "GitHub repository" : "",
         };
       }
 
-      function openCinema(entry) {
-        const demo = getDemoFromEntry(entry);
+      function openCinema(demo) {
         if (!demo.videoId) return;
 
         lastFocused = document.activeElement;
         player.src = `https://www.youtube-nocookie.com/embed/${demo.videoId}?autoplay=1`;
-        player.title = `${demo.title} demo video`;
-        titleEl.textContent = demo.title;
+        player.title = demo.title ? `${demo.title} demo video` : "Demo video";
+
+        if (demo.title) {
+          titleEl.textContent = demo.title;
+          titleEl.hidden = false;
+        } else {
+          titleEl.hidden = true;
+          titleEl.textContent = "";
+        }
+
+        if (seriesEl) {
+          if (demo.series) {
+            seriesEl.textContent = demo.series;
+            seriesEl.hidden = false;
+          } else {
+            seriesEl.hidden = true;
+            seriesEl.textContent = "";
+          }
+        }
+
         if (demo.github) {
           githubEl.href = demo.github;
-          githubEl.setAttribute("aria-label", demo.githubLabel);
+          githubEl.setAttribute("aria-label", demo.githubLabel || "GitHub repository");
           githubEl.hidden = false;
         } else {
           githubEl.hidden = true;
           githubEl.removeAttribute("href");
         }
+
+        if (headEl) {
+          headEl.hidden = !(demo.series || demo.title || demo.github);
+        }
+
         cinema.hidden = false;
         document.body.style.overflow = "hidden";
         closeBtn.focus();
@@ -4077,7 +4552,21 @@
       entries.forEach((entry) => {
         entry.addEventListener("click", (e) => {
           if (e.target.closest(".project-demo-entry-github")) return;
-          openCinema(entry);
+          openCinema(getDemoFromEntry(entry));
+        });
+      });
+
+      experienceTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+          e.preventDefault();
+          openCinema({
+            videoId: trigger.getAttribute("data-video-id") || "",
+            title: trigger.getAttribute("data-title") || "",
+            series: trigger.getAttribute("data-series") || "",
+            github: trigger.getAttribute("data-github") || "",
+            githubLabel: trigger.getAttribute("data-github-label") || "GitHub repository",
+          });
         });
       });
 
